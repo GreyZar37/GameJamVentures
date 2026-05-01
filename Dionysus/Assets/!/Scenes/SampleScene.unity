@@ -131,7 +131,6 @@ GameObject:
   - component: {fileID: 19298931}
   - component: {fileID: 19298930}
   - component: {fileID: 19298929}
-  - component: {fileID: 19298933}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -233,18 +232,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &19298933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 19298928}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ac1a86e61e403c42a23f1fd6c5872ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Roll
 --- !u!1 &106798941
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +244,7 @@ GameObject:
   - component: {fileID: 106798944}
   - component: {fileID: 106798943}
   - component: {fileID: 106798945}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Roll4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +261,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -0.51, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.02, z: 0.9}
+  m_LocalScale: {x: 0.7, y: 0.05, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1246663271}
@@ -294,7 +281,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -338,7 +325,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,7 +651,7 @@ GameObject:
   - component: {fileID: 957551638}
   - component: {fileID: 957551637}
   - component: {fileID: 957551639}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Roll3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -681,7 +668,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.51, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.02, z: 0.9}
+  m_LocalScale: {x: 0.7, y: 0.05, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1246663271}
@@ -701,7 +688,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -745,7 +732,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!1 &1100857223
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,7 +745,7 @@ GameObject:
   - component: {fileID: 1100857226}
   - component: {fileID: 1100857225}
   - component: {fileID: 1100857227}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Roll5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -775,7 +762,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: -0.51}
-  m_LocalScale: {x: 0.9, y: 0.02, z: 0.9}
+  m_LocalScale: {x: 0.7, y: 0.05, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1246663271}
@@ -795,7 +782,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -839,7 +826,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!1 &1246663267
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,7 +841,7 @@ GameObject:
   - component: {fileID: 1246663268}
   - component: {fileID: 1246663272}
   - component: {fileID: 1246663273}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Dice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -947,8 +934,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246663267}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.69180655, y: -0.14630014, z: 0.14630017, w: -0.69180655}
-  m_LocalPosition: {x: 1.12, y: 4.01, z: 0.46}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.951, y: 4.085, z: 0.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -959,7 +946,7 @@ Transform:
   - {fileID: 1100857224}
   - {fileID: 1311310589}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 293.88098, y: 90, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1246663272
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1013,7 +1000,7 @@ GameObject:
   - component: {fileID: 1311310591}
   - component: {fileID: 1311310590}
   - component: {fileID: 1311310592}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Roll2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1030,7 +1017,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0.51}
-  m_LocalScale: {x: 0.9, y: 0.02, z: 0.9}
+  m_LocalScale: {x: 0.7, y: 0.05, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1246663271}
@@ -1050,7 +1037,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1094,7 +1081,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!1 &2007730822
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,7 +1094,7 @@ GameObject:
   - component: {fileID: 2007730827}
   - component: {fileID: 2007730828}
   - component: {fileID: 2007730829}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Roll1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1124,7 +1111,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.51, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.02, z: 0.9}
+  m_LocalScale: {x: 0.7, y: 0.05, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1246663271}
@@ -1156,7 +1143,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1188,7 +1175,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!1 &2138556886
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,7 +1188,7 @@ GameObject:
   - component: {fileID: 2138556891}
   - component: {fileID: 2138556892}
   - component: {fileID: 2138556893}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Roll6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1218,7 +1205,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.51, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.02, z: 0.9}
+  m_LocalScale: {x: 0.7, y: 0.05, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1246663271}
@@ -1250,7 +1237,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1282,7 +1269,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
