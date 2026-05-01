@@ -6,6 +6,6 @@ public class GambleButtonInteractable : MonoBehaviour, IInteractable
     {
         PlayerControllerManager.Instance.ChangePlayerController(PlayerControllerType.GamblingView);
         Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = false;
+        Cursor.visible = true;
     }
 }
