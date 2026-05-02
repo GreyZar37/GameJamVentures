@@ -4,7 +4,10 @@ Shader "Real Ivy/Flat leaves"
 {
 	Properties
 	{
-		[HideInInspector] _EmissionColor("Emission Color", Color) = (1,1,1,1)
+		_EmissionColor("Emission Color", Color) = (0,0,0,1)
+
+		_EmissionIntensity("Emission Intensity", Range(0, 20)) = 1
+		
 		[HideInInspector] _AlphaCutoff("Alpha Cutoff ", Range(0, 1)) = 0.5
 		[ASEBegin]_Color("Color", Color) = (1,1,1,1)
 		_AlbedoTexture("AlbedoTexture", 2D) = "white" {}
@@ -256,6 +259,8 @@ Shader "Real Ivy/Flat leaves"
 			float _Specular;
 			float _Smoothness;
 			float _Cutoff;
+			float4 _EmissionColor;
+			float _EmissionIntensity;
 			#ifdef _TRANSMISSION_ASE
 				float _TransmissionShadow;
 			#endif
@@ -492,7 +497,7 @@ Shader "Real Ivy/Flat leaves"
 				
 				float3 Albedo = ( _Color * tex2DNode76 ).rgb;
 				float3 Normal = appendResult132.xyz;
-				float3 Emission = 0;
+				float3 Emission = tex2DNode76.rgb * _EmissionColor.rgb * _EmissionIntensity;
 				float3 Specular = ( tex2D( _SpecularTexture, Offset117 ) * _Specular ).rgb;
 				float Metallic = 0;
 				float Smoothness = _Smoothness;
@@ -718,6 +723,8 @@ Shader "Real Ivy/Flat leaves"
 			float _Specular;
 			float _Smoothness;
 			float _Cutoff;
+			float4 _EmissionColor;
+			float _EmissionIntensity;
 			#ifdef _TRANSMISSION_ASE
 				float _TransmissionShadow;
 			#endif
@@ -1029,6 +1036,8 @@ Shader "Real Ivy/Flat leaves"
 			float _Specular;
 			float _Smoothness;
 			float _Cutoff;
+			float4 _EmissionColor;
+			float _EmissionIntensity;
 			#ifdef _TRANSMISSION_ASE
 				float _TransmissionShadow;
 			#endif
@@ -1327,6 +1336,8 @@ Shader "Real Ivy/Flat leaves"
 			float _Specular;
 			float _Smoothness;
 			float _Cutoff;
+			float4 _EmissionColor;
+			float _EmissionIntensity;
 			#ifdef _TRANSMISSION_ASE
 				float _TransmissionShadow;
 			#endif
@@ -1538,7 +1549,7 @@ Shader "Real Ivy/Flat leaves"
 				
 				
 				float3 Albedo = ( _Color * tex2DNode76 ).rgb;
-				float3 Emission = 0;
+				float3 Emission = tex2DNode76.rgb * _EmissionColor.rgb * _EmissionIntensity;
 				float Alpha = tex2DNode76.a;
 				float AlphaClipThreshold = _Cutoff;
 
@@ -1639,6 +1650,8 @@ Shader "Real Ivy/Flat leaves"
 			float _Specular;
 			float _Smoothness;
 			float _Cutoff;
+			float4 _EmissionColor;
+			float _EmissionIntensity;
 			#ifdef _TRANSMISSION_ASE
 				float _TransmissionShadow;
 			#endif
