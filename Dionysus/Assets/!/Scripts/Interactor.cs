@@ -42,19 +42,31 @@ public class Interactor : MonoBehaviour
         ray = new Ray(cam.transform.position, cam.transform.forward);
         if (Physics.Raycast(ray, out hit, rayLength, rayMask, QueryTriggerInteraction.Ignore))
         {
-            if (currentInteractable == null && hit.transform.TryGetComponent(out IInteractable hitInteractable))
+            if (hit.transform.TryGetComponent(out IInteractable hitInteractable))
             {
-                currentInteractable = hitInteractable;
-                OnInteractableHit?.Invoke(true);
+                if (currentInteractable == null)
+                {
+                    currentInteractable = hitInteractable;
+                    currentInteractable.Highlight();
+                    OnInteractableHit?.Invoke(true);
+                }
+                else if (currentInteractable != hitInteractable)
+                {
+                    currentInteractable.Unhighlight();
+                    currentInteractable = null;
+                    OnInteractableHit?.Invoke(false);
+                }
             }
-            else if (currentInteractable != null && !hit.transform.TryGetComponent(out hitInteractable))
+            else if (currentInteractable != null && !hit.transform.TryGetComponent(out IInteractable _))
             {
+                currentInteractable.Unhighlight();
                 currentInteractable = null;
                 OnInteractableHit?.Invoke(false);
             }
         }
         else if (currentInteractable != null)
         {
+            currentInteractable.Unhighlight();
             currentInteractable = null;
             OnInteractableHit?.Invoke(false);
         }

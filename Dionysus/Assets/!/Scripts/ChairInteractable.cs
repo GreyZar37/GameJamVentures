@@ -4,6 +4,7 @@ public class ChairInteractable : MonoBehaviour, IInteractable
 {
     private Collider chairCollider;
 
+
     private void Awake()
     {
         chairCollider = GetComponent<Collider>();
@@ -14,5 +15,20 @@ public class ChairInteractable : MonoBehaviour, IInteractable
         PlayerControllerManager.Instance.ChangePlayerController(PlayerControllerType.Sitting);
         GamblingManager.Instance.SetGamblingSetup(true);
         chairCollider.enabled = false;
+    }
+
+    public void ReturnToDefault()
+    {
+        chairCollider.enabled = true;
+    }
+
+    public void Highlight()
+    {
+        
+    }
+
+    public void Unhighlight()
+    {
+        
     }
 }
