@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float moveSmoothTime = 0.075f;
+    [SerializeField] private float gravity = -18f;
 
     private CharacterController controller;
     private Transform cam;
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 forward = new Vector3(cam.forward.x, 0f, cam.forward.z).normalized;
 
         move = forward * smoothMove.y + cam.right * smoothMove.x;
+        fallVelocity.y += gravity * deltaTime;
         controller.Move((move * moveSpeed + fallVelocity) * deltaTime);
     }
 }
