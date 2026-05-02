@@ -30,12 +30,6 @@ public class RoomGenerator : MonoBehaviour
     
     [SerializeField] private GameObject criticalPath;
 
- 
- 
- 
- 
- 
-
     void Start()
     {
         _roomAmount = width * height;
@@ -136,6 +130,8 @@ public class RoomGenerator : MonoBehaviour
     {
         Room current = start;
         current.markedProtected = true;
+        _uncheckedRooms.Remove(current);
+
 
         while (current != end)
         {
@@ -184,24 +180,84 @@ public class RoomGenerator : MonoBehaviour
 
             if (randomRoom.roomPrefab != null && !randomRoom.markedProtected)
             {
-                
-                Destroy(randomRoom.roomPrefab );
-                randomRoom.roomPrefab = null;
-                _roomAmount -= 1;
-                _uncheckedRooms.Remove(randomRoom);
+                GameObject savedPrefab = randomRoom.roomPrefab;
 
+                randomRoom.roomPrefab = null;
+
+                if (RoomsAreStillConnected())
+                {
+                    Destroy(savedPrefab);
+                    _roomAmount -= 1;
+                }
+                else
+                {
+                    randomRoom.roomPrefab = savedPrefab;
+                }
+
+                _uncheckedRooms.Remove(randomRoom);
+            }
+            else
+            {
+                _uncheckedRooms.Remove(randomRoom);
             }
         }
-        
     }
-
-    private void OnDrawGizmosSelected()
+    
+    private bool RoomsAreStillConnected()
     {
-         Gizmos.color = Color.green;
-         Gizmos.DrawWireCube(_playerSpawnRoom.gridPosition, Vector3.one  * gridSize);
-         Gizmos.color = Color.darkRed;
-         Gizmos.DrawWireCube(_bossSpawnRoom.gridPosition, Vector3.one * gridSize);
+        Room startRoom = null;
+        int totalRooms = 0;
 
+        foreach (Room room in _grid)
+        {
+            if (room.roomPrefab != null)
+            {
+                totalRooms++;
+
+                if (startRoom == null)
+                    startRoom = room;
+            }
+        }
+
+        if (startRoom == null)
+            return true;
+
+        HashSet<Room> visited = new HashSet<Room>();
+        Queue<Room> queue = new Queue<Room>();
+
+        visited.Add(startRoom);
+        queue.Enqueue(startRoom);
+
+        while (queue.Count > 0)
+        {
+            Room current = queue.Dequeue();
+
+            int x = current.gridPosition.x / gridSize;
+            int y = current.gridPosition.z / gridSize;
+
+            CheckNeighbor(x + 1, y, visited, queue);
+            CheckNeighbor(x - 1, y, visited, queue);
+            CheckNeighbor(x, y + 1, visited, queue);
+            CheckNeighbor(x, y - 1, visited, queue);
+        }
+
+        return visited.Count == totalRooms;
+    }
+    
+    private void CheckNeighbor(int x, int y, HashSet<Room> visited, Queue<Room> queue)
+    {
+        if (x < 0 || x >= width || y < 0 || y >= height)
+            return;
+
+        Room neighbor = _grid[x, y];
+
+        if (neighbor.roomPrefab == null)
+            return;
+
+        if (!visited.Add(neighbor))
+            return;
+
+        queue.Enqueue(neighbor);
     }
 
 
