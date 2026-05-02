@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5503778796509683198}
   - component: {fileID: 6622114692902487024}
   m_Layer: 6
-  m_Name: Roll6
+  m_Name: Roll1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 3290707048677782194}
   - component: {fileID: 552948474408045230}
   m_Layer: 6
-  m_Name: Roll3
+  m_Name: Roll4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 1494925121826535461}
   - component: {fileID: 5906711925308560116}
   m_Layer: 6
-  m_Name: Roll5
+  m_Name: Roll2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 3247506155637440321}
   - component: {fileID: 7847934101285746389}
   m_Layer: 6
-  m_Name: Roll2
+  m_Name: Roll5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 1772809047006290462}
   - component: {fileID: 3205924149748309422}
   m_Layer: 6
-  m_Name: Roll1
+  m_Name: Roll6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 5086685737895672336}
   - component: {fileID: 2074009368374712041}
   m_Layer: 6
-  m_Name: Roll4
+  m_Name: Roll3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
