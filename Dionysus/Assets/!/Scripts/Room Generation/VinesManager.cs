@@ -1,3 +1,4 @@
+using System;
 using Dynamite3D.RealIvy;
 using UnityEngine;
 
@@ -8,16 +9,23 @@ public class VinesManager : MonoBehaviour
     private Transform _playerTransform;
     private bool _vinesGenerated = false;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private RoomGenerator _generator;
+
+    private void Start()
     {
-        _playerTransform  = GameObject.FindGameObjectWithTag("Player").transform;
+         _generator = FindAnyObjectByType<RoomGenerator>();
+    }
+
+    public void AssignPlayer()
+    {
+        _playerTransform  = GameObject.FindAnyObjectByType<PlayerMovement>(FindObjectsInactive.Include).transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        GenerateVines();
+        if(_playerTransform != null)
+            GenerateVines();
     }
 
     private void GenerateVines()

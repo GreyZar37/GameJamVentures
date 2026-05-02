@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7453033069522888405}
   - component: {fileID: 7840586124350793559}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DicePool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
