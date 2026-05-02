@@ -439,6 +439,8 @@ MonoBehaviour:
   dicePositions:
   - {x: 1.3, y: -2.8, z: -0.5}
   - {x: 0, y: -2.8, z: -0.5}
+  PlayerPoints: 0
+  EnemyPoints: 0
 --- !u!114 &5142691632796209696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1186,10 +1188,6 @@ PrefabInstance:
     - target: {fileID: 8921731729360728193, guid: a4e4e594a6086bf4896a732eb250d231, type: 3}
       propertyPath: m_Name
       value: Player (Roaming)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8921731729360728193, guid: a4e4e594a6086bf4896a732eb250d231, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

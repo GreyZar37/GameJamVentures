@@ -5,6 +5,9 @@ using UnityEngine.UI;
 public class InteractorUI : MonoBehaviour
 {
     private Image crosshair;
+    
+    [SerializeField] Color hitInteractable;
+    [SerializeField] Color normalColor;
 
     private void Awake()
     {

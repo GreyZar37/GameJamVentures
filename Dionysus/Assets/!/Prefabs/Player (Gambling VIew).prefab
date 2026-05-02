@@ -368,6 +368,30 @@ PrefabInstance:
       propertyPath: <playerControllerType>k__BackingField
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7153542856355753132, guid: a4e4e594a6086bf4896a732eb250d231, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 10.4275
+      objectReference: {fileID: 0}
+    - target: {fileID: 7153542856355753132, guid: a4e4e594a6086bf4896a732eb250d231, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 10.4275
+      objectReference: {fileID: 0}
+    - target: {fileID: 8851885096969739811, guid: a4e4e594a6086bf4896a732eb250d231, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8851885096969739811, guid: a4e4e594a6086bf4896a732eb250d231, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 8851885096969739811, guid: a4e4e594a6086bf4896a732eb250d231, type: 3}
+      propertyPath: m_FillCenter
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8851885096969739811, guid: a4e4e594a6086bf4896a732eb250d231, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 4.43
+      objectReference: {fileID: 0}
     - target: {fileID: 8921731729360728193, guid: a4e4e594a6086bf4896a732eb250d231, type: 3}
       propertyPath: m_Name
       value: Player (Gambling VIew)
