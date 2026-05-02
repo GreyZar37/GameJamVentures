@@ -12,59 +12,52 @@ public class Interactor : MonoBehaviour
     private Ray ray;
     private RaycastHit hit;
 
-    private bool interactSubscribed = false;
     public static event Action<bool> OnInteractableHit;
+    public static event Action<bool> OnPressInteract;
+
+    private PlayerInput input;
 
     private void Start()
     {
         cam = GetComponentInChildren<Camera>().transform;
-        //Interact subscribe logic in bottom of script
+        input = InputManager.Instance.Input;
     }
 
     private void Update()
     {
-        ray = new Ray(cam.position, cam.forward);
-        if(Physics.Raycast(ray, out hit, rayLength, rayMask, QueryTriggerInteraction.Ignore))
+        RaycastForInteractables();
+        UpdateInteractInput();
+    }
+
+    private void UpdateInteractInput()
+    {
+        if(input.Player.Interact.WasPressedThisFrame())
         {
-            if(currentInteractable == null && hit.transform.TryGetComponent(out IInteractable hitInteractable))
+            currentInteractable?.Interact();
+            OnPressInteract?.Invoke(currentInteractable != null);
+        }
+    }
+
+    private void RaycastForInteractables()
+    {
+        ray = new Ray(cam.position, cam.forward);
+        if (Physics.Raycast(ray, out hit, rayLength, rayMask, QueryTriggerInteraction.Ignore))
+        {
+            if (currentInteractable == null && hit.transform.TryGetComponent(out IInteractable hitInteractable))
             {
                 currentInteractable = hitInteractable;
                 OnInteractableHit?.Invoke(true);
             }
-            else if(currentInteractable != null && !hit.transform.TryGetComponent(out hitInteractable))
+            else if (currentInteractable != null && !hit.transform.TryGetComponent(out hitInteractable))
             {
                 currentInteractable = null;
                 OnInteractableHit?.Invoke(false);
             }
         }
-        else if(currentInteractable != null)
+        else if (currentInteractable != null)
         {
             currentInteractable = null;
             OnInteractableHit?.Invoke(false);
         }
-    }
-
-    private void OnInteract(InputAction.CallbackContext ctx)
-    {
-        currentInteractable?.Interact();
-    }
-
-    private void OnEnable()
-    {
-        if (!interactSubscribed)
-        {
-            InputManager.Instance.Input.Player.Interact.started += OnInteract;
-            interactSubscribed = true;
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (interactSubscribed)
-        {
-            InputManager.Instance.Input.Player.Interact.started -= OnInteract;
-            interactSubscribed = false;
-        }
-        OnInteractableHit?.Invoke(false);
     }
 }
