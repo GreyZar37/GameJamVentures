@@ -8,6 +8,7 @@ public class GambleButtonInteractable : MonoBehaviour, IInteractable
         PlayerControllerManager.Instance.ChangePlayerController(PlayerControllerType.GamblingView);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        DicePool.SetActive(true);
+        GamblingManager.Instance.StartGambling();
+        // DicePool.SetActive(true);
     }
 }

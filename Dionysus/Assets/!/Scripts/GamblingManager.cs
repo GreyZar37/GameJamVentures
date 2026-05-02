@@ -51,10 +51,18 @@ public class GamblingManager : Singleton<GamblingManager>
             isPlayersTurn += 1;
             StartGambling();
         }
+        else if (isPlayersTurn > 1)
+        {
+            Instantiate(DicePoolPrefab, dicePositions[1], Random.rotation);
+            StopGambling();
+        }
         else
         {
             Instantiate(DicePoolPrefab, dicePositions[1], Random.rotation);
+            isPlayersTurn = 1;
+            StartGambling();
         }
+        
     }
     public void StopGambling()
     {
