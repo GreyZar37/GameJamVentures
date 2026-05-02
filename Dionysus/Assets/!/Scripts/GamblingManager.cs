@@ -16,13 +16,21 @@ public class GamblingManager : Singleton<GamblingManager>
 
 
     [SerializeField] int PlayerPoints = 0;
+    int PlayerDiffFromTarget;
+    int EnemyDiffFromTarget;
     [SerializeField] int EnemyPoints = 0;
+
+    [SerializeField] int TargetScore = 10;
 
     /// <summary>
     /// Boolean in the form of an int for turn purposes
     /// </summary>
-    bool isFirstTurn = true;
+    bool isPlayerFirstTurn = true;
+    bool isEnemyFirstTurn = true;
+    bool isPlayerLastTurn = false;
+    bool isEnemyLastTurn = false;
     bool isRoundOver = false;
+    bool isFirstTurn = true;
     private bool isGambling = false;
 
     public void SetGamblingSetup(bool isOn)
@@ -58,6 +66,10 @@ public class GamblingManager : Singleton<GamblingManager>
             int participantTurn = UnityEngine.Random.Range(0, 2);
             turn = (GameState) values.GetValue(participantTurn);
         }
+        if (isRoundOver)
+        {
+            FinishRound();
+        }
         StartCoroutine(Gamble());
             /*
             if (!isGambling)
@@ -74,17 +86,31 @@ public class GamblingManager : Singleton<GamblingManager>
                 case GameState.PLAYER_TURN:
                     if (isRoundOver) { break; }
                     Debug.Log("Players turn");
-                    if (!isFirstTurn) { isRoundOver = true; }
                     DicePoolPrefab = Instantiate(DicePoolPrefab, dicePositions[0], Quaternion.identity);
                     DicePoolPrefab.transform.GetChild(0).rotation = UnityEngine.Random.rotation;
                     DicePoolPrefab.transform.GetChild(1).rotation = UnityEngine.Random.rotation;
                     yield return _waitForSeconds2;
                     List<char> PlayerRolls = DicePoolPrefab.GetComponent<Dice>().rolls;
+                    if (isPlayerFirstTurn) 
+                    { 
+                        // isRoundOver = true; 
+                        foreach (var roll in PlayerRolls)
+                        {
+                            PlayerPoints += roll - '0';
+                            // Debug.Log($"Player Roll {roll}");
+                        }
+                    }
+                    DicePoolPrefab.transform.position = dicePositions[0]; // Reroll
                     foreach (var roll in PlayerRolls)
                     {
-                        PlayerPoints += roll - '0';
+                        if (roll == '1')
+                        {
+                            AddOrSubstract();
+                        }
                         // Debug.Log($"Player Roll {roll}");
                     }
+                    
+                    PlayerDiffFromTarget = Math.Abs(TargetScore - PlayerPoints);
                     turn = GameState.OPPONENT_TURN;
                     isFirstTurn = false;
                     StartCoroutine(Gamble());
@@ -104,6 +130,7 @@ public class GamblingManager : Singleton<GamblingManager>
                         EnemyPoints += roll - '0';
                         // Debug.Log($"Enemy Roll {roll}");
                     }
+                    EnemyDiffFromTarget = Math.Abs(TargetScore - EnemyPoints);
                     turn = GameState.PLAYER_TURN;
                     isFirstTurn = false;
                     StartCoroutine(Gamble());
@@ -116,6 +143,20 @@ public class GamblingManager : Singleton<GamblingManager>
     public void StopGambling()
     {
         isGambling = false;
+    }
+
+    extern void AddOrSubstract(); // extern was just to avoid not giving this thing a body yet.
+
+    void FinishRound()
+    {
+        if (PlayerDiffFromTarget < EnemyDiffFromTarget)
+        {
+            turn = GameState.WIN;
+        }
+        else
+        {
+            turn = GameState.LOSE;
+        }
     }
 
     enum GameState
