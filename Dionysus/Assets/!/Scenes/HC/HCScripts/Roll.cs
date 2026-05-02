@@ -9,7 +9,6 @@ class Roll : MonoBehaviour
     void Awake()
     {
         rollNum = name[^1];
-        Debug.Log($"Rollnum variable on Awake {rollNum}");
     }
     void OnTriggerStay(Collider other)
     {
@@ -18,12 +17,10 @@ class Roll : MonoBehaviour
         if (lastPosition == transform.position)
         {
             //rollNum = '0';
-            Debug.Log($"Rollnum variable in if statement {rollNum}");
+            Debug.Log($"You rolled a {rollNum}");
             rollNum = currentRoll;
             GetComponent<Collider>().enabled = false;
         }
         lastPosition = transform.position;
-        Debug.Log($"Number Roll {name[^1]}");
-        Debug.Log($"Current Roll {currentRoll}");
     }
 }
