@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GamblingManager : Singleton<GamblingManager>
@@ -11,6 +12,7 @@ public class GamblingManager : Singleton<GamblingManager>
     [SerializeField] Vector3[] dicePositions = new Vector3[2];
 
     GameState turn;
+
 
     int PlayerPoints = 0;
     int EnemyPoints = 0;
@@ -55,35 +57,30 @@ public class GamblingManager : Singleton<GamblingManager>
         switch (turn)
         {
             case GameState.PLAYER_TURN:
+                Debug.Log("Players turn");
+                DicePoolPrefab = Instantiate(DicePoolPrefab, dicePositions[0], UnityEngine.Random.rotation);
+                turn = GameState.OPPONENT_TURN;
+                List<char> PlayerRolls = DicePoolPrefab.GetComponent<Dice>().rolls;
+                foreach (var roll in PlayerRolls)
+                {
+                    PlayerPoints += Convert.ToInt32(roll);
+                    Debug.Log($"Player Roll {roll}");
+                }
                 break;
             case GameState.OPPONENT_TURN:
-                break;
-            case GameState.WIN:
+                Debug.Log("Enemies turn");
+                DicePoolPrefab = Instantiate(DicePoolPrefab, dicePositions[1], UnityEngine.Random.rotation);
+                List<char> EnemyRolls = DicePoolPrefab.GetComponent<Dice>().rolls;
+                foreach (var roll in EnemyRolls)
+                {
+                    EnemyPoints += Convert.ToInt32(roll);
+                    Debug.Log($"Enemy Roll {roll}");
+                }
+                turn = GameState.PLAYER_TURN;
                 break;
             default:
+                Debug.Log("Something is wrong here");
                 break;
-        }
-        if (isPlayersTurn == 1)
-        {
-            Debug.Log("Players turn");
-            Instantiate(DicePoolPrefab, dicePositions[0], UnityEngine.Random.rotation);
-            isPlayersTurn += 1;
-            StartGambling();
-        }
-        else if (isPlayersTurn > 1)
-        {
-            Debug.Log("Enemies turn");
-            Instantiate(DicePoolPrefab, dicePositions[1], UnityEngine.Random.rotation);
-            return;
-            //StopGambling();
-        }
-        else
-        {
-            Debug.Log("Enemy is starting");
-            Instantiate(DicePoolPrefab, dicePositions[1], UnityEngine.Random.rotation);
-            isPlayersTurn = 1;
-            isGambling = false;
-            StartGambling();
         }
         if (!isGambling)
         {
