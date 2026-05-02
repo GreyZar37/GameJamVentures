@@ -62,7 +62,10 @@ public class GamblingManager : Singleton<GamblingManager>
             isPlayersTurn = 1;
             StartGambling();
         }
-        
+        if (!isGambling)
+        {
+            return;
+        }
     }
     public void StopGambling()
     {
