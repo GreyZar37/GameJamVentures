@@ -6,6 +6,7 @@ public class PlayerLook : MonoBehaviour
     [SerializeField] private float mouseSensitivity = 1f;
     [SerializeField] private float xRotClamp = 80f;
     [SerializeField] private float yRotClamp = 80f;
+    [SerializeField] private bool rotateTransform = false;
 
     private Transform cam;
 
@@ -35,6 +36,7 @@ public class PlayerLook : MonoBehaviour
         yRotation += smoothLook.x * mouseSensitivity;
         if(yRotClamp != 0) yRotation = Mathf.Clamp(yRotation, -yRotClamp, yRotClamp);
 
-        cam.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+        cam.localRotation = Quaternion.Euler(xRotation, rotateTransform ? 0f : yRotation, 0f);
+        if (rotateTransform) transform.Rotate(mouseSensitivity * smoothLook.x * Vector3.up);
     }
 }
