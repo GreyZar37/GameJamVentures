@@ -264,6 +264,33 @@ public class RoomGenerator : MonoBehaviour
     }
 
 
+    private List<Room> GetNeighbors(int  x, int y)
+    {
+          List<Room> neighbors = new List<Room>();
+
+          if (_grid[x + 1, y].roomPrefab != null)
+          {
+              neighbors.Add(_grid[x + 1, y]);
+          }
+
+          if (_grid[x - 1, y].roomPrefab != null)
+          {
+              neighbors.Add(_grid[x - 1, y]);
+          }
+
+          if (_grid[x, y + 1].roomPrefab != null)
+          {
+              neighbors.Add(_grid[x, y + 1]);
+          }
+
+          if (_grid[x, y-1].roomPrefab != null)
+          {
+              neighbors.Add(_grid[x, y-1]);
+          }
+          return neighbors;
+          
+    }
+
     private class Room
     {
         public  Vector3Int gridPosition;
