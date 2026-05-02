@@ -1,9 +1,53 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class GamblingInteractor : MonoBehaviour
+public class GamblingInteractor : Interactor
 {
-    private void Update()
+    [SerializeField] private Texture2D clickTexture;
+
+    protected override void Start()
     {
-        
+        base.Start();
+    }
+    protected override void Update()
+    {
+        base.Update();
+    }
+
+    protected override void UpdateInteractInput()
+    {
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            currentInteractable?.Interact();
+            InvokeOnPressInteract();
+        }
+    }
+
+    protected override void RaycastForInteractables()
+    {
+        ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue(), Camera.MonoOrStereoscopicEye.Mono);
+
+        if (Physics.Raycast(ray, out hit, rayLength, rayMask, (QueryTriggerInteraction)1) &&
+            hit.transform.TryGetComponent(out currentInteractable))
+        {
+            Cursor.SetCursor(clickTexture, Vector2.zero, CursorMode.ForceSoftware);
+        }
+        else
+        {
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        }
+    }
+
+    private void OnEnable()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    private void OnDisable()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 }

@@ -9,11 +9,15 @@ using Random = UnityEngine.Random;
 public class RoomGenerator : MonoBehaviour
 {
     
+    
     private Room[,] _grid;
     private int _roomAmount;
 
-    private Room _playerSpawnRoom, _bossSpawnRoom;
+    public Room playerSpawnRoom, bossSpawnRoom;
     private List<Room> _uncheckedRooms = new List<Room>();
+
+
+    public Action OnPlayerSpawn;
     
     [Header("Generation Settings")]
     [SerializeField] private int gridSize = 3;
@@ -31,6 +35,7 @@ public class RoomGenerator : MonoBehaviour
     
     [SerializeField] private GameObject criticalPath;
 
+    [SerializeField] private GameObject playerTable;
     void Start()
     {
         _roomAmount = width * height;
@@ -42,7 +47,7 @@ public class RoomGenerator : MonoBehaviour
             maxRooms = _grid.Length;
         }
 
-        CreateGuaranteedPath(_playerSpawnRoom, _bossSpawnRoom);
+        CreateGuaranteedPath(playerSpawnRoom, bossSpawnRoom);
         RemoveRandomRooms();
         GenerateDoors();
         
@@ -68,8 +73,8 @@ public class RoomGenerator : MonoBehaviour
               _grid[i,j] = room;
           }
       }
-      _playerSpawnRoom = _grid[Random.Range(0, _grid.GetLength(0)), 0];
-      _bossSpawnRoom =  _grid[Random.Range(0, _grid.GetLength(0) - 1), height - 1];
+      playerSpawnRoom = _grid[Random.Range(0, _grid.GetLength(0)), 0];
+      bossSpawnRoom =  _grid[Random.Range(0, _grid.GetLength(0) - 1), height - 1];
       
  
     }
@@ -264,7 +269,34 @@ public class RoomGenerator : MonoBehaviour
     }
 
 
-    private class Room
+    private List<Room> GetNeighbors(int  x, int y)
+    {
+          List<Room> neighbors = new List<Room>();
+
+          if (_grid[x + 1, y].roomPrefab != null)
+          {
+              neighbors.Add(_grid[x + 1, y]);
+          }
+
+          if (_grid[x - 1, y].roomPrefab != null)
+          {
+              neighbors.Add(_grid[x - 1, y]);
+          }
+
+          if (_grid[x, y + 1].roomPrefab != null)
+          {
+              neighbors.Add(_grid[x, y + 1]);
+          }
+
+          if (_grid[x, y-1].roomPrefab != null)
+          {
+              neighbors.Add(_grid[x, y-1]);
+          }
+          return neighbors;
+          
+    }
+
+    public class Room
     {
         public  Vector3Int gridPosition;
         public GameObject roomPrefab;
