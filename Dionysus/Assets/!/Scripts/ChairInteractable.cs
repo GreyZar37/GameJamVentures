@@ -15,4 +15,14 @@ public class ChairInteractable : MonoBehaviour, IInteractable
         GamblingManager.Instance.SetGamblingSetup(true);
         chairCollider.enabled = false;
     }
+
+    public void Highlight()
+    {
+        
+    }
+
+    public void Unhighlight()
+    {
+        
+    }
 }

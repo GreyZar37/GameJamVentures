@@ -5,7 +5,8 @@ using Random = UnityEngine.Random;
 public class HandLogic : MonoBehaviour, IInteractable
 {
     private static readonly int Delay = Animator.StringToHash("delay");
-    
+    private static readonly int IsPointing = Animator.StringToHash("isPointing");
+
     private float _randomDelayToAnimatorLoop;
     private Animator _animator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,6 +31,16 @@ public class HandLogic : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        throw new System.NotImplementedException();
+        print("Hand: " + this.gameObject.name);
+    }
+
+    public void Highlight()
+    {
+        _animator.SetBool(IsPointing, true);   
+    }
+
+    public void Unhighlight()
+    {
+         _animator.SetBool(IsPointing, false);
     }
 }

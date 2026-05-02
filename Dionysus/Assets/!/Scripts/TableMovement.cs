@@ -27,7 +27,6 @@ public class TableMovement : MonoBehaviour
     private void SelectNewRoom()
     {
         EnableHands(currentRoom.physicalRoom.doors);
-        print( currentRoom.physicalRoom.doors);
     }
 
     private void EnableHands(PhysicalRoom.DoorDirection doors)

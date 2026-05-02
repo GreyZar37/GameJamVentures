@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightFlicker
   smoothTime: 0.125
-  flickerIntensity: 3
+  flickerIntensity: 2
 --- !u!1 &4670902241177802077
 GameObject:
   m_ObjectHideFlags: 0

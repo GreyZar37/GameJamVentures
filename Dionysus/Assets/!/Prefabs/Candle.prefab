@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightFlicker
   smoothTime: 0.125
-  flickerIntensity: 3
+  flickerIntensity: 2
 --- !u!1001 &8503233385580994416
 PrefabInstance:
   m_ObjectHideFlags: 0
