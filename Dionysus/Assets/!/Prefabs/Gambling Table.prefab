@@ -490,7 +490,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1004
+  m_VersionIndex: 1013
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -684,7 +684,7 @@ GameObject:
   - component: {fileID: 2431620979254233095}
   - component: {fileID: 5442977183829841254}
   - component: {fileID: 5584825991389242913}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2118,7 +2118,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 961
+  m_VersionIndex: 970
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2451,7 +2451,7 @@ GameObject:
   - component: {fileID: 8926669304130636290}
   - component: {fileID: 2321805696161870076}
   - component: {fileID: 6454407770659221377}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2615,6 +2615,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (Roaming)
       objectReference: {fileID: 0}
+    - target: {fileID: 8921731729360728193, guid: a4e4e594a6086bf4896a732eb250d231, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2676,6 +2680,10 @@ PrefabInstance:
     - target: {fileID: 8872086264739538647, guid: 3aaafca2139edc5459326eb88c01527a, type: 3}
       propertyPath: m_Name
       value: Player (Gambling View)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8872086264739538647, guid: 3aaafca2139edc5459326eb88c01527a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
