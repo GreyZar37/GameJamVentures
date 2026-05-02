@@ -714,7 +714,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7851951fa47ea6349a212c0ee5849a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dice
-  dice: []
   rolls: 
 --- !u!4 &402152752 stripped
 Transform:
@@ -3661,31 +3660,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9049557770172757196, guid: a18cc62c192749c41bed443e02118d41, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.98007596
+      value: 0.94159037
       objectReference: {fileID: 0}
     - target: {fileID: 9049557770172757196, guid: a18cc62c192749c41bed443e02118d41, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.08453919
+      value: -0.28478628
       objectReference: {fileID: 0}
     - target: {fileID: 9049557770172757196, guid: a18cc62c192749c41bed443e02118d41, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.16359082
+      value: 0.17542514
       objectReference: {fileID: 0}
     - target: {fileID: 9049557770172757196, guid: a18cc62c192749c41bed443e02118d41, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.07444743
+      value: -0.03912028
       objectReference: {fileID: 0}
     - target: {fileID: 9049557770172757196, guid: a18cc62c192749c41bed443e02118d41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -8.126
+      value: -31.505
       objectReference: {fileID: 0}
     - target: {fileID: 9049557770172757196, guid: a18cc62c192749c41bed443e02118d41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 19.672
+      value: 24.432
       objectReference: {fileID: 0}
     - target: {fileID: 9049557770172757196, guid: a18cc62c192749c41bed443e02118d41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -10.099
+      value: -11.748
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

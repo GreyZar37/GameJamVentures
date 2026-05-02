@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -11,7 +12,7 @@ public class Roll : MonoBehaviour
     void Awake()
     {
         rollNum = name[^1];
-        DicePool.dice.Add(GetComponent<Roll>());
+        // DicePool.dice.Add(GetComponent<Roll>());
     }
     void OnTriggerStay(Collider other)
     {
