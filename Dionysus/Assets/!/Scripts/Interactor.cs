@@ -1,46 +1,45 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Interactor : MonoBehaviour
 {
-    [SerializeField] private float rayLength = 2f;
-    [SerializeField] private LayerMask rayMask = 1 << 0;
+    [SerializeField] protected float rayLength = 2f;
+    [SerializeField] protected LayerMask rayMask = 1 << 0;
 
-    private IInteractable currentInteractable;
-    private Transform cam;
-    private Ray ray;
-    private RaycastHit hit;
+    protected IInteractable currentInteractable;
+    protected Camera cam;
+    protected Ray ray;
+    protected RaycastHit hit;
 
     public static event Action<bool> OnInteractableHit;
     public static event Action<bool> OnPressInteract;
 
-    private PlayerInput input;
+    protected PlayerInput input;
 
-    private void Start()
+    protected virtual void Start()
     {
-        cam = GetComponentInChildren<Camera>().transform;
+        cam = GetComponentInChildren<Camera>();
         input = InputManager.Instance.Input;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         RaycastForInteractables();
         UpdateInteractInput();
     }
 
-    private void UpdateInteractInput()
+    protected virtual void UpdateInteractInput()
     {
         if(input.Player.Interact.WasPressedThisFrame())
         {
             currentInteractable?.Interact();
-            OnPressInteract?.Invoke(currentInteractable != null);
+            InvokeOnPressInteract();
         }
     }
 
-    private void RaycastForInteractables()
+    protected virtual void RaycastForInteractables()
     {
-        ray = new Ray(cam.position, cam.forward);
+        ray = new Ray(cam.transform.position, cam.transform.forward);
         if (Physics.Raycast(ray, out hit, rayLength, rayMask, QueryTriggerInteraction.Ignore))
         {
             if (currentInteractable == null && hit.transform.TryGetComponent(out IInteractable hitInteractable))
@@ -59,5 +58,10 @@ public class Interactor : MonoBehaviour
             currentInteractable = null;
             OnInteractableHit?.Invoke(false);
         }
+    }
+
+    protected void InvokeOnPressInteract()
+    {
+        OnPressInteract?.Invoke(currentInteractable != null);
     }
 }
