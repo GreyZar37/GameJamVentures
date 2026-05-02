@@ -767,6 +767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   moveSpeed: 5
   moveSmoothTime: 0.075
+  gravity: -18
 --- !u!114 &1867434149304318368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -799,7 +800,7 @@ MonoBehaviour:
   rayLength: 2
   rayMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 129
 --- !u!114 &5286922238875296725
 MonoBehaviour:
   m_ObjectHideFlags: 0
