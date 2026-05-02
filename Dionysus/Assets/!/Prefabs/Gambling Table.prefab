@@ -393,6 +393,7 @@ GameObject:
   - component: {fileID: 8948190581746977218}
   - component: {fileID: 7048131328571021306}
   - component: {fileID: 5142691632796209696}
+  - component: {fileID: 5108178044854356400}
   m_Layer: 0
   m_Name: Gambling Table
   m_TagString: Untagged
@@ -462,6 +463,29 @@ MonoBehaviour:
   bottomHand: {fileID: 3086784260397456215}
   handsAnimator: {fileID: 499783812879226758}
   smoothTime: 0.6
+--- !u!114 &5108178044854356400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3760317735939915167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39423fa1008c65d4283592e8786d5040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GamblingManager2
+  <GameState>k__BackingField: 0
+  <Player>k__BackingField:
+    health: 0
+    points: 0
+    turnsPlayed: 0
+    isFinished: 0
+  <Opponent>k__BackingField:
+    health: 0
+    points: 0
+    turnsPlayed: 0
+    isFinished: 0
 --- !u!1 &5576736509305350687
 GameObject:
   m_ObjectHideFlags: 0
