@@ -6,8 +6,10 @@ public class InteractorUI : MonoBehaviour
 {
     private Image crosshair;
     
-    [SerializeField] Color hitInteractable;
+    [SerializeField] Color hitInteractableColor;
     [SerializeField] Color normalColor;
+    
+    [SerializeField] private float bonusScale = 1.25f;
 
     private void Awake()
     {
@@ -26,6 +28,16 @@ public class InteractorUI : MonoBehaviour
 
     private void OnInteractableHit(bool hitInteractable)
     {
-        crosshair.color = hitInteractable ? Color.green : Color.white;
+        crosshair.color = hitInteractable ? hitInteractableColor : normalColor;
+
+        if (hitInteractable)
+        {
+            crosshair.rectTransform.localScale = Vector3.one * bonusScale;
+        }
+        else
+        {
+             crosshair.rectTransform.localScale = Vector3.one;
+        }
+        
     }
 }

@@ -31,6 +31,8 @@ public class PhysicalRoom : MonoBehaviour
     [Header("South Door/Wall")]
     [SerializeField] private GameObject southDoor;
     [SerializeField] private GameObject southWall;
+    
+   [SerializeField]  private Animator[] doorsAnimators;
 
     public void CreateDoors(DoorDirection assignDoors)
     {
@@ -46,6 +48,15 @@ public class PhysicalRoom : MonoBehaviour
         
         westDoor.SetActive(assignDoors.HasFlag(DoorDirection.West));
         westWall.SetActive(!assignDoors.HasFlag(DoorDirection.West));
+    }
+
+    public void SetOpenState(bool open)
+    {
+        foreach (Animator animator in doorsAnimators)
+        {
+            if(animator.gameObject.activeSelf)
+              animator.SetBool("isOpen", open);
+        }
     }
  
 }

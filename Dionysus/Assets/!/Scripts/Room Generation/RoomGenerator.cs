@@ -50,7 +50,7 @@ public class RoomGenerator : MonoBehaviour
         CreateGuaranteedPath(playerSpawnRoom, bossSpawnRoom);
         RemoveRandomRooms();
         GenerateDoors();
-        var spawnPos = new  Vector3(playerSpawnRoom.gridPosition.x, 1.25f, playerSpawnRoom.gridPosition.z);
+        var spawnPos = new  Vector3(playerSpawnRoom.worldPosition.x, 1.25f, playerSpawnRoom.worldPosition.z);
         Instantiate(playerTable, spawnPos, Quaternion.identity);
         OnPlayerSpawn?.Invoke();
         
@@ -67,10 +67,11 @@ public class RoomGenerator : MonoBehaviour
           for (int j = 0; j < height; j++)
           {
               var room = new Room();
-              room.gridPosition = new Vector3Int(i * gridSize, 0, j * gridSize);
-              var spawnedRoom = Instantiate(roomPrefabs[Random.Range(0, roomPrefabs.Length)], room.gridPosition, Quaternion.identity);
+              room.worldPosition = new Vector3Int(i * gridSize, 0, j * gridSize);
+              var spawnedRoom = Instantiate(roomPrefabs[Random.Range(0, roomPrefabs.Length)], room.worldPosition, Quaternion.identity);
               room.roomPrefab = spawnedRoom.gameObject;
               room.physicalRoom = spawnedRoom.GetComponent<PhysicalRoom>();
+              room.gridPosition = new Vector2Int(i, j);
               _uncheckedRooms.Add(room);
 
               _grid[i,j] = room;
@@ -146,21 +147,21 @@ public class RoomGenerator : MonoBehaviour
 
         while (current != end)
         {
-            var xDir = Math.Sign( end.gridPosition.x - current.gridPosition.x);
+            var xDir = Math.Sign( end.worldPosition.x - current.worldPosition.x);
             if (xDir != 0)
             {
-                current = GetRoomFromWorldPos(current.gridPosition.x + (gridSize * xDir), current.gridPosition.z);
+                current = GetRoomFromWorldPos(current.worldPosition.x + (gridSize * xDir), current.worldPosition.z);
                 current.markedProtected = true;
-                Instantiate(criticalPath, current.gridPosition, Quaternion.identity);
+                Instantiate(criticalPath, current.worldPosition, Quaternion.identity);
                 _uncheckedRooms.Remove(current);
             }
 
-            var zDir = Math.Sign( end.gridPosition.z - current.gridPosition.z);
+            var zDir = Math.Sign( end.worldPosition.z - current.worldPosition.z);
             if (zDir != 0)
             {
-                current = GetRoomFromWorldPos(current.gridPosition.x, current.gridPosition.z + (gridSize * zDir));
+                current = GetRoomFromWorldPos(current.worldPosition.x, current.worldPosition.z + (gridSize * zDir));
                 current.markedProtected = true;
-                Instantiate(criticalPath, current.gridPosition, Quaternion.identity);
+                Instantiate(criticalPath, current.worldPosition, Quaternion.identity);
                 _uncheckedRooms.Remove(current);
             }
         }
@@ -170,7 +171,7 @@ public class RoomGenerator : MonoBehaviour
     {
         foreach (var room in _grid)
         {
-            if (room.gridPosition.x == x && room.gridPosition.z == y)
+            if (room.worldPosition.x == x && room.worldPosition.z == y)
             {
                 return room;
             }
@@ -180,7 +181,7 @@ public class RoomGenerator : MonoBehaviour
 
     private Vector3Int GetWorldGridPos(int x, int y)
     {
-        return _grid[x,y].gridPosition;
+        return _grid[x,y].worldPosition;
     }
     
     private void RemoveRandomRooms()
@@ -243,8 +244,8 @@ public class RoomGenerator : MonoBehaviour
         {
             Room current = queue.Dequeue();
 
-            int x = current.gridPosition.x / gridSize;
-            int y = current.gridPosition.z / gridSize;
+            int x = current.worldPosition.x / gridSize;
+            int y = current.worldPosition.z / gridSize;
 
             CheckNeighbor(x + 1, y, visited, queue);
             CheckNeighbor(x - 1, y, visited, queue);
@@ -272,28 +273,28 @@ public class RoomGenerator : MonoBehaviour
     }
 
 
-    private List<Room> GetNeighbors(int  x, int y)
+    public List<Room> GetNeighbors(int  x, int y)
     {
           List<Room> neighbors = new List<Room>();
 
-          if (_grid[x + 1, y].roomPrefab != null)
+          if (_grid[x + 2, y].roomPrefab != null)
           {
-              neighbors.Add(_grid[x + 1, y]);
+              neighbors.Add(_grid[x + 2, y]);
           }
 
-          if (_grid[x - 1, y].roomPrefab != null)
+          if (_grid[x - 2, y].roomPrefab != null)
           {
-              neighbors.Add(_grid[x - 1, y]);
+              neighbors.Add(_grid[x - 2, y]);
           }
 
-          if (_grid[x, y + 1].roomPrefab != null)
+          if (_grid[x, y + 2].roomPrefab != null)
           {
-              neighbors.Add(_grid[x, y + 1]);
+              neighbors.Add(_grid[x, y + 2]);
           }
 
-          if (_grid[x, y-1].roomPrefab != null)
+          if (_grid[x, y-2].roomPrefab != null)
           {
-              neighbors.Add(_grid[x, y-1]);
+              neighbors.Add(_grid[x, y-2]);
           }
           return neighbors;
           
@@ -301,7 +302,8 @@ public class RoomGenerator : MonoBehaviour
 
     public class Room
     {
-        public  Vector3Int gridPosition;
+        public Vector2Int gridPosition;
+        public Vector3Int worldPosition;
         public GameObject roomPrefab;
         public PhysicalRoom physicalRoom;
         

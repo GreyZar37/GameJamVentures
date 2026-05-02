@@ -28,12 +28,20 @@ public class GamblingInteractor : Interactor
         ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue(), Camera.MonoOrStereoscopicEye.Mono);
 
         if (Physics.Raycast(ray, out hit, rayLength, rayMask, (QueryTriggerInteraction)1) &&
-            hit.transform.TryGetComponent(out currentInteractable))
+            hit.transform.TryGetComponent(out IInteractable newInteractable))
         {
             Cursor.SetCursor(clickTexture, Vector2.zero, CursorMode.ForceSoftware);
+            if (currentInteractable == null)
+            {
+                currentInteractable = newInteractable;
+                currentInteractable.Highlight();
+            }
+              
         }
-        else
+        else if(currentInteractable != null)
         {
+            currentInteractable.Unhighlight();
+            currentInteractable = null;
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         }
     }

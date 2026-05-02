@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class TableMovement : MonoBehaviour
 {
-    [SerializeField] private GameObject leftHand;
-    [SerializeField] private GameObject rightHand;
-    [SerializeField] private GameObject topHand;
-    [SerializeField] private GameObject bottomHand;
+    [SerializeField] private HandLogic leftHand;
+    [SerializeField] private HandLogic rightHand;
+    [SerializeField] private HandLogic topHand;
+    [SerializeField] private HandLogic bottomHand;
     
-     private RoomGenerator.Room currentRoom;
+     public RoomGenerator.Room currentRoom;
      private RoomGenerator _generator;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,10 +18,25 @@ public class TableMovement : MonoBehaviour
         SelectNewRoom();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void OpenAllDoors()
     {
-        
+        var neighbors = _generator.GetNeighbors(currentRoom.gridPosition.x, currentRoom.gridPosition.y);
+        foreach (var neighbor in neighbors)
+        {
+            neighbor.physicalRoom.SetOpenState(true);
+        }
+        currentRoom.physicalRoom.SetOpenState(true);
+    }
+
+    public void CloseAllDoors()
+    {
+        var neighbors = _generator.GetNeighbors(currentRoom.gridPosition.x, currentRoom.gridPosition.y);
+        foreach (var neighbor in neighbors)
+        {
+            neighbor.physicalRoom.SetOpenState(false);
+        }
+        currentRoom.physicalRoom.SetOpenState(false);
     }
 
     private void SelectNewRoom()
@@ -31,9 +46,40 @@ public class TableMovement : MonoBehaviour
 
     private void EnableHands(PhysicalRoom.DoorDirection doors)
     {
-        leftHand.SetActive(doors.HasFlag(PhysicalRoom.DoorDirection.West));
-        topHand.SetActive(doors.HasFlag(PhysicalRoom.DoorDirection.North));
-        rightHand.SetActive(doors.HasFlag(PhysicalRoom.DoorDirection.East));
-        bottomHand.SetActive(doors.HasFlag(PhysicalRoom.DoorDirection.South));
+        leftHand.gameObject.SetActive(doors.HasFlag(PhysicalRoom.DoorDirection.West));
+        leftHand.AssignAction(() =>
+        {
+            MoveToAnotherRoom(PhysicalRoom.DoorDirection.West);
+        });
+        
+        topHand.gameObject.SetActive(doors.HasFlag(PhysicalRoom.DoorDirection.North));
+        topHand.AssignAction(() =>
+        {
+            MoveToAnotherRoom(PhysicalRoom.DoorDirection.North);
+        });
+        
+        
+        rightHand.gameObject.SetActive(doors.HasFlag(PhysicalRoom.DoorDirection.East));
+        rightHand.AssignAction(() =>
+        {
+            MoveToAnotherRoom(PhysicalRoom.DoorDirection.East);
+        });
+        
+        bottomHand.gameObject.SetActive(doors.HasFlag(PhysicalRoom.DoorDirection.South));
+        bottomHand.AssignAction(() =>
+        {
+            MoveToAnotherRoom(PhysicalRoom.DoorDirection.South);
+        });
+    }
+
+    private void MoveToAnotherRoom(PhysicalRoom.DoorDirection direction)
+    {
+        leftHand.ClearActions();
+        rightHand.ClearActions();
+        topHand.ClearActions();
+        bottomHand.ClearActions();
+        
+        print(direction.ToString());
+        
     }
 }

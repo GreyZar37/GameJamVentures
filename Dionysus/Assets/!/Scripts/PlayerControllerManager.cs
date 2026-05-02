@@ -5,6 +5,9 @@ public class PlayerControllerManager : Singleton<PlayerControllerManager>
 {
     [field: SerializeField] public PlayerControllerType StartController { get; private set; }
     private PlayerIdentifier[] players;
+    
+    [SerializeField] private TableMovement tableMovement;
+
 
     private void Awake()
     {
@@ -27,6 +30,17 @@ public class PlayerControllerManager : Singleton<PlayerControllerManager>
         {
             newPlayer.gameObject.SetActive(true);
         });
+
+        switch (type)
+        {
+            case PlayerControllerType.Sitting:
+                tableMovement.OpenAllDoors();
+                break;
+            case PlayerControllerType.FreeRoam:
+                tableMovement.CloseAllDoors();
+                break;
+        }
+        
     }
     public void ChangePlayerControllerInstantly(PlayerControllerType type)
     {
