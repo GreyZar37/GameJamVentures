@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class GamblingManager : Singleton<GamblingManager>
     [SerializeField] GameObject DicePoolPrefab;
 
     [SerializeField] Vector3[] dicePositions = new Vector3[2];
+
+    GameState turn;
 
     int PlayerPoints = 0;
     int EnemyPoints = 0;
@@ -44,22 +47,40 @@ public class GamblingManager : Singleton<GamblingManager>
     public void StartGambling()
     {
         isGambling = true;
-        isPlayersTurn = Random.Range(0,2);
+        var values = Enum.GetValues(typeof(GameState));
+        int participantTurn = UnityEngine.Random.Range(0, 2);
+        turn = (GameState) values.GetValue(participantTurn);
+        switch (turn)
+        {
+            case GameState.PLAYER_TURN:
+                break;
+            case GameState.OPPONENT_TURN:
+                break;
+            case GameState.WIN:
+                break;
+            default:
+                break;
+        }
         if (isPlayersTurn == 1)
         {
-            Instantiate(DicePoolPrefab, dicePositions[0], Random.rotation);
+            Debug.Log("Players turn");
+            Instantiate(DicePoolPrefab, dicePositions[0], UnityEngine.Random.rotation);
             isPlayersTurn += 1;
             StartGambling();
         }
         else if (isPlayersTurn > 1)
         {
-            Instantiate(DicePoolPrefab, dicePositions[1], Random.rotation);
-            StopGambling();
+            Debug.Log("Enemies turn");
+            Instantiate(DicePoolPrefab, dicePositions[1], UnityEngine.Random.rotation);
+            return;
+            //StopGambling();
         }
         else
         {
-            Instantiate(DicePoolPrefab, dicePositions[1], Random.rotation);
+            Debug.Log("Enemy is starting");
+            Instantiate(DicePoolPrefab, dicePositions[1], UnityEngine.Random.rotation);
             isPlayersTurn = 1;
+            isGambling = false;
             StartGambling();
         }
         if (!isGambling)
@@ -70,5 +91,13 @@ public class GamblingManager : Singleton<GamblingManager>
     public void StopGambling()
     {
         isGambling = false;
+    }
+
+    enum GameState
+    {
+        PLAYER_TURN,
+        OPPONENT_TURN,
+        WIN,
+        LOSE
     }
 }

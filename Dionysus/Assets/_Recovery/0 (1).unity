@@ -987,10 +987,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gambling Table
       objectReference: {fileID: 0}
-    - target: {fileID: 4849901484108419429, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
-      propertyPath: DicePool
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5442977183829841254, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1005,27 +1001,7 @@ PrefabInstance:
       objectReference: {fileID: 243611454}
     - target: {fileID: 6846708671713162146, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
       propertyPath: m_VersionIndex
-      value: 1007
-      objectReference: {fileID: 0}
-    - target: {fileID: 7048131328571021306, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
-      propertyPath: DicePoolPrefab
-      value: 
-      objectReference: {fileID: 2001533891049406264, guid: 7d873eb0efb17c3488681678e3964468, type: 3}
-    - target: {fileID: 7048131328571021306, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
-      propertyPath: dicePositions.Array.data[0].y
-      value: -2.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7048131328571021306, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
-      propertyPath: dicePositions.Array.data[0].z
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7048131328571021306, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
-      propertyPath: dicePositions.Array.data[1].y
-      value: -2.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7048131328571021306, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
-      propertyPath: dicePositions.Array.data[1].z
-      value: -0.5
+      value: 1010
       objectReference: {fileID: 0}
     - target: {fileID: 7825085838749754766, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
       propertyPath: m_Mesh
@@ -1037,7 +1013,7 @@ PrefabInstance:
       objectReference: {fileID: 1170065061}
     - target: {fileID: 8376956516819747207, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
       propertyPath: m_VersionIndex
-      value: 964
+      value: 967
       objectReference: {fileID: 0}
     - target: {fileID: 8948190581746977218, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
       propertyPath: m_LocalPosition.x
