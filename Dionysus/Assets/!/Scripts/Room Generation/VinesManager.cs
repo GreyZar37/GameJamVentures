@@ -11,12 +11,13 @@ public class VinesManager : MonoBehaviour
     
     private RoomGenerator _generator;
 
-    private void Start()
+    private void Awake()
     {
          _generator = FindAnyObjectByType<RoomGenerator>();
+         _generator.OnPlayerSpawn += AssignPlayer;
     }
 
-    public void AssignPlayer()
+    private void AssignPlayer()
     {
         _playerTransform  = GameObject.FindAnyObjectByType<PlayerMovement>(FindObjectsInactive.Include).transform;
     }

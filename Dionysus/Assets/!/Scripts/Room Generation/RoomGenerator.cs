@@ -50,7 +50,9 @@ public class RoomGenerator : MonoBehaviour
         CreateGuaranteedPath(playerSpawnRoom, bossSpawnRoom);
         RemoveRandomRooms();
         GenerateDoors();
-        
+        var spawnPos = new  Vector3(playerSpawnRoom.gridPosition.x, 1.25f, playerSpawnRoom.gridPosition.z);
+        Instantiate(playerTable, spawnPos, Quaternion.identity);
+        OnPlayerSpawn?.Invoke();
         
     }
     
@@ -68,6 +70,7 @@ public class RoomGenerator : MonoBehaviour
               room.gridPosition = new Vector3Int(i * gridSize, 0, j * gridSize);
               var spawnedRoom = Instantiate(roomPrefabs[Random.Range(0, roomPrefabs.Length)], room.gridPosition, Quaternion.identity);
               room.roomPrefab = spawnedRoom.gameObject;
+              room.physicalRoom = spawnedRoom.GetComponent<PhysicalRoom>();
               _uncheckedRooms.Add(room);
 
               _grid[i,j] = room;
@@ -300,6 +303,7 @@ public class RoomGenerator : MonoBehaviour
     {
         public  Vector3Int gridPosition;
         public GameObject roomPrefab;
+        public PhysicalRoom physicalRoom;
         
         public Room[] neighbors;
 

@@ -15,7 +15,7 @@ public class TableMovement : MonoBehaviour
     {
         _generator = FindAnyObjectByType<RoomGenerator>();
         currentRoom = _generator.playerSpawnRoom;
-        transform.position = _generator.playerSpawnRoom.gridPosition;
+        SelectNewRoom();
     }
 
     // Update is called once per frame
@@ -24,9 +24,17 @@ public class TableMovement : MonoBehaviour
         
     }
 
-    public void SelectNewRoom()
+    private void SelectNewRoom()
     {
-        
-        
+        EnableHands(currentRoom.physicalRoom.doors);
+        print( currentRoom.physicalRoom.doors);
+    }
+
+    private void EnableHands(PhysicalRoom.DoorDirection doors)
+    {
+        leftHand.SetActive(doors.HasFlag(PhysicalRoom.DoorDirection.West));
+        topHand.SetActive(doors.HasFlag(PhysicalRoom.DoorDirection.North));
+        rightHand.SetActive(doors.HasFlag(PhysicalRoom.DoorDirection.East));
+        bottomHand.SetActive(doors.HasFlag(PhysicalRoom.DoorDirection.South));
     }
 }
