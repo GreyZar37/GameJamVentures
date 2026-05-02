@@ -720,6 +720,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GamblingManager
   startBtnAnimator: {fileID: 2125228875}
   smoothTime: 0.125
+  DicePoolPrefab: {fileID: 0}
+  dicePositions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
 --- !u!1 &935779962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1608,6 +1612,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3062556670583158733, guid: a4e4e594a6086bf4896a732eb250d231, type: 3}
   m_PrefabInstance: {fileID: 8496697898206876092}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1583283131
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 1822e821612f72b4992f1d6e0bbc61d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.1602426
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1822e821612f72b4992f1d6e0bbc61d2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.000000311582
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1822e821612f72b4992f1d6e0bbc61d2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.170366
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1822e821612f72b4992f1d6e0bbc61d2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1822e821612f72b4992f1d6e0bbc61d2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1822e821612f72b4992f1d6e0bbc61d2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1822e821612f72b4992f1d6e0bbc61d2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1822e821612f72b4992f1d6e0bbc61d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1822e821612f72b4992f1d6e0bbc61d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1822e821612f72b4992f1d6e0bbc61d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1822e821612f72b4992f1d6e0bbc61d2, type: 3}
+      propertyPath: m_Name
+      value: Dionysis Character
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1822e821612f72b4992f1d6e0bbc61d2, type: 3}
 --- !u!4 &1591408506 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5624452817196683808, guid: 9af4c3129ac78374f921376a6e867706, type: 3}
@@ -3725,3 +3786,4 @@ SceneRoots:
   - {fileID: 1015296571}
   - {fileID: 935779963}
   - {fileID: 865267721}
+  - {fileID: 1583283131}
