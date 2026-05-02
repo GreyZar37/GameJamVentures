@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class TableMovement : MonoBehaviour
@@ -7,15 +9,31 @@ public class TableMovement : MonoBehaviour
     [SerializeField] private HandLogic topHand;
     [SerializeField] private HandLogic bottomHand;
     
-     public RoomGenerator.Room currentRoom;
-     private RoomGenerator _generator;
+    [SerializeField] private Animator handsAnimator;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+     private RoomGenerator.Room currentRoom;
+     private RoomGenerator _generator;
+     
+     [SerializeField] private float smoothTime = 0.125f;
+    
     void Start()
     {
         _generator = FindAnyObjectByType<RoomGenerator>();
         currentRoom = _generator.playerSpawnRoom;
-        SelectNewRoom();
+    }
+    
+    public void MoveGamblingTable(Vector3 targetPos)
+    {
+        StopAllCoroutines();
+        StartCoroutine(MoveGamblingTableSmoothly(targetPos));
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            SelectNewRoom();
+        }
     }
 
 
@@ -42,6 +60,7 @@ public class TableMovement : MonoBehaviour
     private void SelectNewRoom()
     {
         EnableHands(currentRoom.physicalRoom.doors);
+        ShowHands();
     }
 
     private void EnableHands(PhysicalRoom.DoorDirection doors)
@@ -72,14 +91,62 @@ public class TableMovement : MonoBehaviour
         });
     }
 
+    public void ShowHands()
+    {
+        handsAnimator.SetBool("isHidden", false);
+    }
+
+    public void HideHands()
+    {
+        handsAnimator.SetBool("isHidden", true);
+    }
+
     private void MoveToAnotherRoom(PhysicalRoom.DoorDirection direction)
     {
         leftHand.ClearActions();
         rightHand.ClearActions();
         topHand.ClearActions();
         bottomHand.ClearActions();
-        
+        RoomGenerator.Room nextRoom;
+        switch (direction)
+        {
+            case PhysicalRoom.DoorDirection.West:
+                nextRoom = _generator.GetRoomFromGridPos(currentRoom.gridPosition.x - 1, currentRoom.gridPosition.y );
+                MoveGamblingTable(nextRoom.worldPosition);
+                currentRoom = nextRoom;
+                break;
+            case PhysicalRoom.DoorDirection.North:
+                nextRoom = _generator.GetRoomFromGridPos(currentRoom.gridPosition.x , currentRoom.gridPosition.y+ 1);
+                MoveGamblingTable(nextRoom.worldPosition);
+                currentRoom = nextRoom;
+                break;
+            case PhysicalRoom.DoorDirection.East:
+                nextRoom = _generator.GetRoomFromGridPos(currentRoom.gridPosition.x + 1, currentRoom.gridPosition.y);
+                MoveGamblingTable(nextRoom.worldPosition);
+                currentRoom = nextRoom;
+                break;
+            case PhysicalRoom.DoorDirection.South:
+                nextRoom = _generator.GetRoomFromGridPos(currentRoom.gridPosition.x, currentRoom.gridPosition.y  - 1);
+                MoveGamblingTable(nextRoom.worldPosition);
+                currentRoom = nextRoom;
+                break;
+        }
+
         print(direction.ToString());
-        
+        HideHands();
+
+    }
+    
+    private IEnumerator MoveGamblingTableSmoothly(Vector3 targetPos)
+    {
+        Vector3 refPos = Vector3.zero;
+        while(Vector3.Distance(transform.position, targetPos) > 0.01f)
+        {
+            var newPos = Vector3.SmoothDamp(transform.position, targetPos, ref refPos, smoothTime, Mathf.Infinity,
+                Time.deltaTime);
+            transform.position = new Vector3(newPos.x, transform.position.y, newPos.z);
+            yield return null;
+        }
+        transform.position = targetPos;
     }
 }

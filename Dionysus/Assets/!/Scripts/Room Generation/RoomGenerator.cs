@@ -178,10 +178,17 @@ public class RoomGenerator : MonoBehaviour
         }
         return null;
     }
+    
+   
 
-    private Vector3Int GetWorldGridPos(int x, int y)
+    public Vector3Int GetWorldGridPos(int x, int y)
     {
         return _grid[x,y].worldPosition;
+    }
+
+    public Room GetRoomFromGridPos(int x, int y)
+    {
+        return _grid[x, y];
     }
     
     private void RemoveRandomRooms()
@@ -273,31 +280,32 @@ public class RoomGenerator : MonoBehaviour
     }
 
 
-    public List<Room> GetNeighbors(int  x, int y)
+    public List<Room> GetNeighbors(int x, int y)
     {
-          List<Room> neighbors = new List<Room>();
+        List<Room> neighbors = new List<Room>();
 
-          if (_grid[x + 2, y].roomPrefab != null)
-          {
-              neighbors.Add(_grid[x + 2, y]);
-          }
+        AddNeighbor(x + 1, y, neighbors); 
+        AddNeighbor(x - 1, y, neighbors); 
+        AddNeighbor(x, y + 1, neighbors);
+        AddNeighbor(x, y - 1, neighbors); 
 
-          if (_grid[x - 2, y].roomPrefab != null)
-          {
-              neighbors.Add(_grid[x - 2, y]);
-          }
+        return neighbors;
+    }
 
-          if (_grid[x, y + 2].roomPrefab != null)
-          {
-              neighbors.Add(_grid[x, y + 2]);
-          }
+    private void AddNeighbor(int x, int y, List<Room> neighbors)
+    {
+        if (x < 0 || x >= width || y < 0 || y >= height)
+            return;
 
-          if (_grid[x, y-2].roomPrefab != null)
-          {
-              neighbors.Add(_grid[x, y-2]);
-          }
-          return neighbors;
-          
+        Room neighbor = _grid[x, y];
+
+        if (neighbor == null)
+            return;
+
+        if (neighbor.roomPrefab == null)
+            return;
+
+        neighbors.Add(neighbor);
     }
 
     public class Room

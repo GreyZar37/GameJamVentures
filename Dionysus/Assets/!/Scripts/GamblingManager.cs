@@ -7,7 +7,7 @@ public class GamblingManager : Singleton<GamblingManager>
 {
     private static WaitForSecondsRealtime _waitForSeconds2 = new WaitForSecondsRealtime(2);
     [SerializeField] private Animator startBtnAnimator;
-    [SerializeField] private float smoothTime = 0.125f;
+    
     [SerializeField] GameObject DicePoolPrefab;
 
     [SerializeField] Vector3[] dicePositions = new Vector3[2];
@@ -38,24 +38,8 @@ public class GamblingManager : Singleton<GamblingManager>
         startBtnAnimator.SetBool("isAvailable", isOn);
     }
 
-    public void MoveGamblingTable(Vector3 targetPos)
-    {
-        StopAllCoroutines();
-        StartCoroutine(MoveGamblingTableSmoothly(targetPos));
-    }
-
-    private IEnumerator MoveGamblingTableSmoothly(Vector3 targetPos)
-    {
-        Vector3 refPos = Vector3.zero;
-        while(Vector3.Distance(transform.position, targetPos) > 0.01f)
-        {
-            var newPos = Vector3.SmoothDamp(transform.position, targetPos, ref refPos, smoothTime, Mathf.Infinity,
-                Time.deltaTime);
-            transform.position = new Vector3(newPos.x, transform.position.y, newPos.z);
-            yield return null;
-        }
-        transform.position = targetPos;
-    }
+  
+  
 
     public void StartGambling()
     {

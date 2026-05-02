@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 322681836}
   - component: {fileID: 322681837}
+  - component: {fileID: 322681838}
   m_Layer: 0
   m_Name: '*RoomGenerator*'
   m_TagString: Untagged
@@ -173,6 +174,30 @@ MonoBehaviour:
   northSouthCorridorPrefab: {fileID: 3041195342328562980, guid: 3879a9401dbfa6e40ace6550c5828a35, type: 3}
   criticalPath: {fileID: 2492007768359427177, guid: 791f9be659f727943b8ac11f382eb0b9, type: 3}
   playerTable: {fileID: 3760317735939915167, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
+--- !u!167 &322681838
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322681835}
+  m_Enabled: 1
+  m_MinDistance: 500
+  m_MaxDistance: 500
+  m_ReverbPreset: 9
+  m_Room: -1000
+  m_RoomHF: 0
+  m_DecayTime: 2.91
+  m_DecayHFRatio: 1.3
+  m_Reflections: -602
+  m_ReflectionsDelay: 0.015
+  m_Reverb: -302
+  m_ReverbDelay: 0.022
+  m_HFReference: 5000
+  m_Diffusion: 100
+  m_Density: 100
+  m_LFReference: 250
+  m_RoomLF: 0
 --- !u!1 &495935493
 GameObject:
   m_ObjectHideFlags: 0
