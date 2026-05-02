@@ -425,6 +425,38 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &681503099 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 841871025125464691, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
+  m_PrefabInstance: {fileID: 1528018757099523789}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &681503104
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681503099}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &935779962
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,9 +1015,29 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 243611454}
+    - target: {fileID: 841871025125464691, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233506013830625941, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872196744920676968, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3760317735939915167, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
       propertyPath: m_Name
       value: Gambling Table
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003876708707446463, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4572713335916244546, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4849901484108419429, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
       propertyPath: DicePool
@@ -999,6 +1051,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1170065061}
+    - target: {fileID: 5913289199614628242, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6554165828540043631, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6846708671713162146, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1006,6 +1066,18 @@ PrefabInstance:
     - target: {fileID: 6846708671713162146, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
       propertyPath: m_VersionIndex
       value: 1013
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048131328571021306, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
+      propertyPath: dicePositions.Array.data[0].x
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048131328571021306, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
+      propertyPath: dicePositions.Array.data[0].y
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048131328571021306, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
+      propertyPath: dicePositions.Array.data[0].z
+      value: -1.25
       objectReference: {fileID: 0}
     - target: {fileID: 7825085838749754766, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
       propertyPath: m_Mesh
@@ -1063,9 +1135,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6839774053970087071, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 841871025125464691, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 0}
+      addedObject: {fileID: 681503104}
   m_SourcePrefab: {fileID: 100100000, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

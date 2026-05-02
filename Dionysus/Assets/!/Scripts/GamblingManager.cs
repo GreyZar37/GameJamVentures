@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GamblingManager : Singleton<GamblingManager>
 {
+    private static WaitForSecondsRealtime _waitForSeconds2 = new WaitForSecondsRealtime(2);
     [SerializeField] private Animator startBtnAnimator;
     [SerializeField] private float smoothTime = 0.125f;
     [SerializeField] GameObject DicePoolPrefab;
@@ -14,14 +15,14 @@ public class GamblingManager : Singleton<GamblingManager>
     GameState turn;
 
 
-    int PlayerPoints = 0;
-    int EnemyPoints = 0;
+    [SerializeField] int PlayerPoints = 0;
+    [SerializeField] int EnemyPoints = 0;
 
     /// <summary>
     /// Boolean in the form of an int for turn purposes
     /// </summary>
-    int isPlayersTurn = 0;
-
+    bool isFirstTurn = true;
+    bool isRoundOver = false;
     private bool isGambling = false;
 
     public void SetGamblingSetup(bool isOn)
@@ -52,41 +53,66 @@ public class GamblingManager : Singleton<GamblingManager>
     {
         isGambling = true;
         var values = Enum.GetValues(typeof(GameState));
-        int participantTurn = UnityEngine.Random.Range(0, 2);
-        turn = (GameState) values.GetValue(participantTurn);
-        switch (turn)
+        if (isFirstTurn)
         {
-            case GameState.PLAYER_TURN:
-                Debug.Log("Players turn");
-                DicePoolPrefab = Instantiate(DicePoolPrefab, dicePositions[0], UnityEngine.Random.rotation);
-                turn = GameState.OPPONENT_TURN;
-                List<char> PlayerRolls = DicePoolPrefab.GetComponent<Dice>().rolls;
-                foreach (var roll in PlayerRolls)
-                {
-                    PlayerPoints += Convert.ToInt32(roll);
-                    Debug.Log($"Player Roll {roll}");
-                }
-                break;
-            case GameState.OPPONENT_TURN:
-                Debug.Log("Enemies turn");
-                DicePoolPrefab = Instantiate(DicePoolPrefab, dicePositions[1], UnityEngine.Random.rotation);
-                List<char> EnemyRolls = DicePoolPrefab.GetComponent<Dice>().rolls;
-                foreach (var roll in EnemyRolls)
-                {
-                    EnemyPoints += Convert.ToInt32(roll);
-                    Debug.Log($"Enemy Roll {roll}");
-                }
-                turn = GameState.PLAYER_TURN;
-                break;
-            default:
-                Debug.Log("Something is wrong here");
-                break;
+            int participantTurn = UnityEngine.Random.Range(0, 2);
+            turn = (GameState) values.GetValue(participantTurn);
         }
-        if (!isGambling)
-        {
-            return;
-        }
+        StartCoroutine(Gamble());
+            /*
+            if (!isGambling)
+            {
+                yield break;
+            }
+            */
     }
+        IEnumerator Gamble()
+        {
+            
+            switch (turn)
+            {
+                case GameState.PLAYER_TURN:
+                    if (isRoundOver) { break; }
+                    Debug.Log("Players turn");
+                    if (!isFirstTurn) { isRoundOver = true; }
+                    DicePoolPrefab = Instantiate(DicePoolPrefab, dicePositions[0], Quaternion.identity);
+                    DicePoolPrefab.transform.GetChild(0).rotation = UnityEngine.Random.rotation;
+                    DicePoolPrefab.transform.GetChild(1).rotation = UnityEngine.Random.rotation;
+                    yield return _waitForSeconds2;
+                    List<char> PlayerRolls = DicePoolPrefab.GetComponent<Dice>().rolls;
+                    foreach (var roll in PlayerRolls)
+                    {
+                        PlayerPoints += roll - '0';
+                        // Debug.Log($"Player Roll {roll}");
+                    }
+                    turn = GameState.OPPONENT_TURN;
+                    isFirstTurn = false;
+                    StartCoroutine(Gamble());
+                    break;
+                case GameState.OPPONENT_TURN:
+                    if (isRoundOver) { break; }
+                    Debug.Log("Enemies turn");
+                    if (!isFirstTurn) { isRoundOver = true; }
+                    DicePoolPrefab = Instantiate(DicePoolPrefab, dicePositions[1], Quaternion.identity);
+                    DicePoolPrefab.transform.GetChild(0).rotation = UnityEngine.Random.rotation;
+                    DicePoolPrefab.transform.GetChild(1).rotation = UnityEngine.Random.rotation;
+                    yield return _waitForSeconds2;
+                    List<char> EnemyRolls = DicePoolPrefab.GetComponent<Dice>().rolls;
+                    foreach (var roll in EnemyRolls)
+                    {
+                        // EnemyPoints += int.Parse(roll);
+                        EnemyPoints += roll - '0';
+                        // Debug.Log($"Enemy Roll {roll}");
+                    }
+                    turn = GameState.PLAYER_TURN;
+                    isFirstTurn = false;
+                    StartCoroutine(Gamble());
+                    break;
+                default:
+                    Debug.Log("Something is wrong here");
+                    break;
+            }
+        }
     public void StopGambling()
     {
         isGambling = false;
