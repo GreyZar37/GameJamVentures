@@ -62,7 +62,7 @@ public class Interactor : MonoBehaviour
     {
         if (interactSubscribed)
         {
-            InputManager.Instance.Input.Player.Interact.started -= OnInteract;
+            //InputManager.Instance.Input.Player.Interact.started -= OnInteract;
             interactSubscribed = false;
         }
         OnInteractableHit?.Invoke(false);
