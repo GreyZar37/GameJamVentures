@@ -20,7 +20,7 @@ public class GamblingManager2 : Singleton<GamblingManager2>
     [SerializeField] private Animator bellAnimator;
     [SerializeField] private Animator scoreTextAnimator;
     [SerializeField] private GameObject dicePoolPrefab;
-    [SerializeField] private Vector3[] dicePositions = new Vector3[2];
+    [SerializeField] private Transform[] dicePositions;
 
     private TMP_Text scoreText;
     private DicePool currentPool;
@@ -100,7 +100,7 @@ public class GamblingManager2 : Singleton<GamblingManager2>
         void RollDices()
         {
             gambler.turnsPlayed++;
-            currentPool = Instantiate(dicePoolPrefab, dicePositions[gambler.gamblerType == GamblerType.Player ? 0 : 1], Quaternion.identity).GetComponent<DicePool>();
+            currentPool = Instantiate(dicePoolPrefab, dicePositions[gambler.gamblerType == GamblerType.Player ? 0 : 1].position, Quaternion.identity).GetComponent<DicePool>();
             currentPool.OnRollDone += OnDiceRollDone;
             //Local function is called when dices are finished rolling:
             void OnDiceRollDone(int sum)

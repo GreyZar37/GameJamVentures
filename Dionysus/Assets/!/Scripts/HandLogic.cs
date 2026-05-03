@@ -9,15 +9,23 @@ public class HandLogic : MonoBehaviour, IInteractable
 
     private float _randomDelayToAnimatorLoop;
     [SerializeField] private Animator animator;
+    private Collider  _collider;
 
     private Action OnPressed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _collider  = GetComponent<Collider>();
         _randomDelayToAnimatorLoop = Random.Range(0f, 0.4f);
         animator = GetComponent<Animator>();
         animator.SetFloat(Delay, _randomDelayToAnimatorLoop);
 
+    }
+
+    private void Update()
+    {
+        _collider.enabled = Singleton<PlayerControllerManager>.Instance.currentPlayerControllerType ==
+                            PlayerControllerType.GamblingView;
     }
 
 

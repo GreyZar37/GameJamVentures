@@ -13,7 +13,7 @@ public class ChairInteractable : MonoBehaviour, IInteractable
     public void Interact()
     {
         PlayerControllerManager.Instance.ChangePlayerController(PlayerControllerType.Sitting);
-        GamblingManager.Instance.SetGamblingSetup(true);
+        GamblingManager2.Instance.SetupForGambling();
         chairCollider.enabled = false;
     }
 

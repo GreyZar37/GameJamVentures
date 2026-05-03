@@ -21,6 +21,8 @@ public class TableMovement : MonoBehaviour
      private List<LightLogic> currentLights = new List<LightLogic>();
      
      [SerializeField] private GameObject Dionysos;
+     
+     private bool doorsOpen = false;
 
     
     void Start()
@@ -44,6 +46,13 @@ public class TableMovement : MonoBehaviour
         {
             SelectNewRoom();
         }
+
+        if (Singleton<PlayerControllerManager>.Instance.currentPlayerControllerType !=
+            PlayerControllerType.GamblingView && doorsOpen)
+        {
+            
+            CloseAllDoors();
+        }
     }
 
 
@@ -55,6 +64,7 @@ public class TableMovement : MonoBehaviour
             neighbor.physicalRoom.SetOpenState(true);
         }
         currentRoom.physicalRoom.SetOpenState(true);
+        doorsOpen = true;
     }
 
     private void CloseAllDoors()
@@ -65,6 +75,7 @@ public class TableMovement : MonoBehaviour
             neighbor.physicalRoom.SetOpenState(false);
         }
         currentRoom.physicalRoom.SetOpenState(false);
+        doorsOpen = false;
     }
 
     private void SelectNewRoom()
