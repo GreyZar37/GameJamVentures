@@ -502,6 +502,7 @@ GameObject:
   - component: {fileID: 7434688786304646923}
   - component: {fileID: 106428046559217055}
   - component: {fileID: 7074985610614847252}
+  - component: {fileID: 5472104102720088960}
   m_Layer: 0
   m_Name: Dices
   m_TagString: Untagged
@@ -569,6 +570,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5472104102720088960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135429850105032618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d7bea7e4906daf4ca7ae871d656350f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayDice
+  startDicesAnimator: {fileID: 7074985610614847252}
 --- !u!1 &1441889411774554086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,6 +1588,7 @@ MonoBehaviour:
   targetScore: 10
   maxRounds: 3
   subtractionManager: {fileID: 5386751690009465729}
+  playDice: {fileID: 5472104102720088960}
   bellAnimator: {fileID: 2237501662412014473}
   scoreTextAnimator: {fileID: 3406206662538104039}
   playerScoreText: {fileID: 707190564691834258}

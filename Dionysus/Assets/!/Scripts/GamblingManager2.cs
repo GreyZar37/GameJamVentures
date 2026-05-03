@@ -18,6 +18,7 @@ public class GamblingManager2 : Singleton<GamblingManager2>
 
     [Header("Other Properties")]
     [SerializeField] private SubtractionSelectionManager subtractionManager;
+    [SerializeField] private PlayDice playDice;
     [SerializeField] private Animator bellAnimator;
     [SerializeField] private Animator scoreTextAnimator;
     [SerializeField] private TMP_Text playerScoreText;
@@ -115,8 +116,19 @@ public class GamblingManager2 : Singleton<GamblingManager2>
                 yield break; //Opponent stopped, don't roll.
             }
         }
+        else if(gambler.turnsPlayed == 0 && gambler.gamblerType == GamblerType.Player)
+        {
+            Debug.Log("Players first turn, show dice");
+            playDice.ShowDice(() =>
+            {
+                RollDices();
+            });
+            yield break;
+        }
+
 
         //Calls local function RollDices():
+        Debug.Log("Enemy's First Turn, Just roll dice");
         RollDices();
 
         void RollDices()
