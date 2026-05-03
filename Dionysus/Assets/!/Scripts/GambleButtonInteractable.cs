@@ -7,7 +7,7 @@ public class GambleButtonInteractable : MonoBehaviour, IInteractable
 
     
     [SerializeField] Animator diceAnimator;
-    
+
     
     private void Awake()
     {
@@ -52,7 +52,7 @@ public class GambleButtonInteractable : MonoBehaviour, IInteractable
 
     public void StartGambling()
     {
-        GamblingManager2.Instance.StartGambling();
+        GamblingManager2.Instance.StartGambling(TableMovement.Instance.currentRoom.enemyData);
         PlayerControllerManager.Instance.SetPlayerStatus(PlayerStatus.Battling);
 
     }

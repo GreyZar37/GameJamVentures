@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd39505718d08540a110155fd546e67, type: 3}
   m_Name: HardDionyis
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  health: 3
+  health: 2
   mustStopAtDiceValue: 8
   luck: 0.6

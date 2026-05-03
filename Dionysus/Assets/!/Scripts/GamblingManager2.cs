@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -47,10 +48,10 @@ public class GamblingManager2 : Singleton<GamblingManager2>
         bellAnimator.SetBool("isAvailable", true);
     }
 
-    public void StartGambling()
+    public void StartGambling(EnemyData enemyData)
     {
         Player = new Gambler(PlayerManager.Instance.PlayerHealth, GamblerType.Player);
-        Opponent = new Gambler(1, GamblerType.Opponent); //Change argument (health) based on opponent difficulty!
+        Opponent = new Gambler(enemyData.health, GamblerType.Opponent); //Change argument (health) based on opponent difficulty!
 
         GameState = (GameState)Random.Range(0, 2); //Randomize who starts
         ChangeGamblerTurn(GameState);
@@ -236,6 +237,12 @@ public class GamblingManager2 : Singleton<GamblingManager2>
         {
             Debug.Log("Congratulations!! You won!!");
             TableMovement.Instance.currentRoom.enemyBeaten = true;
+
+            if (TableMovement.Instance.currentRoom == RoomGenerator.Instance.bossSpawnRoom)
+            {
+                SceneManager.LoadScene("Thanks");
+                return;
+            }
             OnGamblingEnd?.Invoke();
         }
         else if(GameState == GameState.LOSE)

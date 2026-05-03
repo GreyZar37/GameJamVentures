@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
 
-public class RoomGenerator : MonoBehaviour
+public class RoomGenerator : Singleton<RoomGenerator>
 {
     
     

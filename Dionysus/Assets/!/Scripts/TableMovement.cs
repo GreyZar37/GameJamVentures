@@ -211,8 +211,6 @@ public class TableMovement : Singleton<TableMovement>
         {
             CloseAllDoors();
             Dionysos.SetActive(true);
-            _buttonInteractable.StartGambling();
-
         }
         
         yield return new WaitForSeconds(1f);
@@ -231,9 +229,6 @@ public class TableMovement : Singleton<TableMovement>
         
         if(PlayerControllerManager.Instance.currentPlayerStatus != PlayerStatus.Battling)
              PlayerControllerManager.Instance.SetPlayerStatus(PlayerStatus.Exploring);
-
-        
-        PlayerControllerManager.Instance.ChangePlayerController(PlayerControllerType.GamblingView);
 
     }
 }
