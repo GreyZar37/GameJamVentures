@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/!/Scenes/Oleg/RoomTemplate.unity
     guid: 2aa88454eefb35448bd467a704f4cc50
+  - enabled: 1
+    path: Assets/!/Scenes/Thanks.unity
+    guid: de95dc024c1d4a049ac7f7989e97a67e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
