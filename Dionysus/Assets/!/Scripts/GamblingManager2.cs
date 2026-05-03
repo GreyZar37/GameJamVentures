@@ -237,7 +237,6 @@ public class GamblingManager2 : Singleton<GamblingManager2>
             Debug.Log("Congratulations!! You won!!");
             TableMovement.Instance.currentRoom.enemyBeaten = true;
             OnGamblingEnd?.Invoke();
-            OnGamblingEnd -= OnGamblingEnd;
         }
         else if(GameState == GameState.LOSE)
         {
