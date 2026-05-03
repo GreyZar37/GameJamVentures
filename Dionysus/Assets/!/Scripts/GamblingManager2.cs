@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -26,6 +25,8 @@ public class GamblingManager2 : Singleton<GamblingManager2>
     [SerializeField] private Image arrowImage;
     [SerializeField] private GameObject dicePoolPrefab;
     [SerializeField] private Transform[] dicePositions;
+    [SerializeField] private GameObject[] playerGoblets;
+    [SerializeField] private GameObject[] opponentsGoblets;
 
     private TMP_Text scoreText;
     private DicePool currentPool;
@@ -53,15 +54,31 @@ public class GamblingManager2 : Singleton<GamblingManager2>
         ChangeGamblerTurn(GameState);
 
         UpdateScoreText();
+        UpdateGobletsHealth();
+
         OnGamblingStart?.Invoke();
     }
 
     private void ChangeGamblerTurn(GameState turn)
     {
         GameState = turn;
-        if (GameState == GameState.PLAYER_TURN && !Player.isFinished) StartCoroutine(RunGamblerTurn(Player));
-        else if (GameState == GameState.OPPONENT_TURN && !Opponent.isFinished) StartCoroutine(RunGamblerTurn(Opponent));
-        else CheckIfGamblersAreFinished();
+        if (GameState == GameState.PLAYER_TURN && !Player.isFinished)
+        {
+            StartCoroutine(RunGamblerTurn(Player));
+        }
+        else if (GameState == GameState.OPPONENT_TURN && !Opponent.isFinished)
+        {
+            StartCoroutine(RunGamblerTurn(Opponent));
+        }
+        else if (GameState == GameState.OPPONENT_TURN && Opponent.isFinished && !Player.isFinished)
+        {
+            ChangeGamblerTurn(GameState.PLAYER_TURN);
+            return;
+        }
+        else
+        {
+            CheckIfGamblersAreFinished();
+        }
 
         Quaternion targetRot = turn == GameState.PLAYER_TURN ? Quaternion.Euler(0f, 0f, 180f) : Quaternion.identity;
         StartCoroutine(SmoothlyRotateArrow(targetRot));
@@ -196,6 +213,8 @@ public class GamblingManager2 : Singleton<GamblingManager2>
             OnRoundFinished?.Invoke(GamblerType.Player);
         }
 
+        UpdateGobletsHealth();
+
         Player.ResetRound();
         Opponent.ResetRound();
         UpdateScoreText();
@@ -230,6 +249,24 @@ public class GamblingManager2 : Singleton<GamblingManager2>
     {
         playerScoreText.text = $"{Player.points}/{targetScore}";
         opponentScoreText.text = $"{Opponent.points}/{targetScore}";
+    }
+
+    private void UpdateGobletsHealth()
+    {
+        HideGoblets();
+        for (int i = 0; i < Player.health; i++)
+        {
+            playerGoblets[i].SetActive(true);
+        }
+        for (int i = 0; i < Opponent.health; i++)
+        {
+            opponentsGoblets[i].SetActive(true);
+        }
+    }
+    private void HideGoblets()
+    {
+        foreach (GameObject goblet in playerGoblets) goblet.SetActive(false);
+        foreach (GameObject goblet in opponentsGoblets) goblet.SetActive(false);
     }
 }
 

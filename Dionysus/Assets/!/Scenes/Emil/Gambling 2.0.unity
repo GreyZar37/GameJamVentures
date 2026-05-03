@@ -478,10 +478,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gambling Table
       objectReference: {fileID: 0}
-    - target: {fileID: 5142691632796209696, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8948190581746977218, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.52

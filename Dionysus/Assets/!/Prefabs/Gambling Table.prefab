@@ -600,7 +600,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8135265657714597904
 Transform:
   m_ObjectHideFlags: 0
@@ -1168,7 +1168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4847656724027862341}
   m_Layer: 0
-  m_Name: PlayerGoblets
+  m_Name: Player Goblets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1546,7 +1546,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3760317735939915167}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d993384713e46949b3db59ddc4ff8e6, type: 3}
   m_Name: 
@@ -1598,6 +1598,14 @@ MonoBehaviour:
   dicePositions:
   - {fileID: 3462575060646732125}
   - {fileID: 801561462626609276}
+  playerGoblets:
+  - {fileID: 5712567908856918017}
+  - {fileID: 6948549778555520427}
+  - {fileID: 4665512229509138596}
+  opponentsGoblets:
+  - {fileID: 399467939157467584}
+  - {fileID: 3892197045913630182}
+  - {fileID: 1441889411774554086}
 --- !u!1 &3892197045913630182
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,7 +1623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2731148697286193735
 Transform:
   m_ObjectHideFlags: 0
@@ -1700,7 +1708,7 @@ GameObject:
   m_Component:
   - component: {fileID: 921025821202646123}
   m_Layer: 0
-  m_Name: PlayerGoblets (1)
+  m_Name: Opponent Goblets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
