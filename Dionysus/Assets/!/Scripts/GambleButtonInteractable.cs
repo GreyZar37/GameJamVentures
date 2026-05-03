@@ -7,7 +7,8 @@ public class GambleButtonInteractable : MonoBehaviour, IInteractable
 
     
     [SerializeField] Animator diceAnimator;
-
+    [SerializeField] private AudioClip bossMusic;
+    [SerializeField] private AudioClip laughingSound;
     
     private void Awake()
     {
@@ -50,10 +51,15 @@ public class GambleButtonInteractable : MonoBehaviour, IInteractable
         
     }
 
-    public void StartGambling()
+    private void StartGambling()
     {
+        if (TableMovement.Instance.currentRoom == RoomGenerator.Instance.bossSpawnRoom)
+        {
+            SoundManager.Instance.SwitchMusic(bossMusic);
+        }
         GamblingManager2.Instance.StartGambling(TableMovement.Instance.currentRoom.enemyData);
         PlayerControllerManager.Instance.SetPlayerStatus(PlayerStatus.Battling);
+        AudioSource.PlayClipAtPoint(laughingSound,transform.position, 2);
 
     }
     

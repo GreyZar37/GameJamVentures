@@ -26,6 +26,7 @@ public class TableMovement : Singleton<TableMovement>
      public bool roomSelectionOnHalt = false;
 
      private GambleButtonInteractable _buttonInteractable;
+
    
      void Start()
     {

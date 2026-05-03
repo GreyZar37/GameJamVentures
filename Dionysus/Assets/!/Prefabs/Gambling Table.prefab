@@ -1234,6 +1234,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GambleButtonInteractable
   selection: 2
   diceAnimator: {fileID: 7074985610614847252}
+  bossMusic: {fileID: 8300000, guid: 0a30019ebb6296c42b2e32cc3eced326, type: 3}
+  laughingSound: {fileID: 8300000, guid: 98633808dac49104f88209831878eca8, type: 3}
 --- !u!1 &2299003150839101454
 GameObject:
   m_ObjectHideFlags: 0

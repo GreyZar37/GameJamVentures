@@ -1,16 +1,12 @@
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : Singleton<SoundManager>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public AudioSource musicSource;
+    
+    public void SwitchMusic(AudioClip clip)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+         musicSource.clip = clip;
+         musicSource.Play();
     }
 }
