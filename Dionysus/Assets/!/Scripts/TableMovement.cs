@@ -83,7 +83,6 @@ public class TableMovement : Singleton<TableMovement>
         currentLights.Clear();
         currentLights.AddRange(FindObjectsByType<LightLogic>());
 
-        OpenAllDoors();
 
         EnableHands(currentRoom.physicalRoom.doors);
         ShowHands();
@@ -131,6 +130,7 @@ public class TableMovement : Singleton<TableMovement>
     private void MoveToAnotherRoom(PhysicalRoom.DoorDirection direction)
     {
         PlayerControllerManager.Instance.SetPlayerStatus(PlayerStatus.Transitioning);
+        OpenAllDoors();
 
         leftHand.ClearActions();
         rightHand.ClearActions();
