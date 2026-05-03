@@ -241,6 +241,7 @@ public class GamblingManager2 : Singleton<GamblingManager2>
             Debug.Log("Sorry to break it to you, but you lost");
         }
         OnGamblingEnd?.Invoke();
+        OnGamblingEnd -= OnGamblingEnd;
     }
 
     private SubtractionSelection CalculateOpponentChoice()

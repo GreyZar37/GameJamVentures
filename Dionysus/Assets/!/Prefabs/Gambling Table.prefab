@@ -1501,6 +1501,7 @@ GameObject:
   - component: {fileID: 8948190581746977218}
   - component: {fileID: 5142691632796209696}
   - component: {fileID: 5108178044854356400}
+  - component: {fileID: 2935512937448508337}
   m_Layer: 0
   m_Name: Gambling Table
   m_TagString: Untagged
@@ -1607,6 +1608,19 @@ MonoBehaviour:
   - {fileID: 399467939157467584}
   - {fileID: 3892197045913630182}
   - {fileID: 1441889411774554086}
+--- !u!114 &2935512937448508337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3760317735939915167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac668faf11cc9774b9ccf183fe37f7aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  opponent: {fileID: 7874971027966531787}
 --- !u!1 &3892197045913630182
 GameObject:
   m_ObjectHideFlags: 0

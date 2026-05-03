@@ -19,11 +19,9 @@ public class DicePool : MonoBehaviour
         {
             Rigidbody rb = dice.GetComponent<Rigidbody>();
             rb.isKinematic = true;
-            rb.interpolation = RigidbodyInterpolation.None;
             dice.OnDiceResult += UpdateSum;
             dice.transform.rotation = Random.rotation;
             rb.isKinematic = false;
-            rb.interpolation = RigidbodyInterpolation.Interpolate;
         }
     }
 
