@@ -6,13 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/!/Scenes/Main Menu.unity
+    guid: ca2d15a712c46b54c94e44dd1922498a
+  - enabled: 1
     path: Assets/!/Scenes/TutorialScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/!/Scenes/Emil/Gambling 2.0.unity
-    guid: e2f28118655176148a2e8da0909a1268
-  - enabled: 1
     path: Assets/!/Scenes/Oleg/RoomTemplate.unity
     guid: 2aa88454eefb35448bd467a704f4cc50
+  - enabled: 1
+    path: Assets/!/Scenes/Thanks.unity
+    guid: de95dc024c1d4a049ac7f7989e97a67e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
