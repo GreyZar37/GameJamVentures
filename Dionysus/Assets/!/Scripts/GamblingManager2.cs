@@ -109,6 +109,12 @@ public class GamblingManager2 : Singleton<GamblingManager2>
                 scoreText.text = $"{sum} !";
                 scoreTextAnimator.SetTrigger("Show Score");
 
+                if (gambler.points == targetScore)
+                {
+                    gambler.isFinished = true;
+                    bool finished = CheckIfGamblersAreFinished();
+                    if (finished) return;
+                }
                 if (gambler.turnsPlayed >= maxRounds)
                 {
                     gambler.isFinished = true;
@@ -163,12 +169,14 @@ public class GamblingManager2 : Singleton<GamblingManager2>
         GameState = endState;
         if(GameState == GameState.WIN)
         {
+            Debug.Log("Congratulations!! You won!!");
             PlayerControllerManager.Instance.ChangePlayerController(PlayerControllerType.Sitting);
         }
         else if(GameState == GameState.LOSE)
         {
             //Play Death Animation Falling to The Ground And Reset Game
-            SceneManager.LoadScene(0);
+            // SceneManager.LoadScene(0);
+            Debug.Log("Sorry to break it to you, but you lost");
         }
         OnGamblingEnd?.Invoke();
     }
