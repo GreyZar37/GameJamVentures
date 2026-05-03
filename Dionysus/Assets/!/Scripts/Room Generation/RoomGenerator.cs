@@ -104,7 +104,7 @@ public class RoomGenerator : MonoBehaviour
               room.physicalRoom = spawnedRoom.GetComponent<PhysicalRoom>();
               room.gridPosition = new Vector2Int(i, j);
               _uncheckedRooms.Add(room);
-              _suitableRoomsForBattle.Add(room);
+             _suitableRoomsForBattle.Add(room);
               
               _grid[i,j] = room;
           }
@@ -112,7 +112,9 @@ public class RoomGenerator : MonoBehaviour
       playerSpawnRoom = _grid[Random.Range(0, _grid.GetLength(0)), 0];
       bossSpawnRoom =  _grid[Random.Range(0, _grid.GetLength(0) - 1), height - 1];
       
- 
+      _suitableRoomsForBattle.Remove(playerSpawnRoom);
+      _suitableRoomsForBattle.Remove(bossSpawnRoom);
+
     }
 
     private void AssignRoomDifficulties()
@@ -134,6 +136,8 @@ public class RoomGenerator : MonoBehaviour
                 room.enemyData = hardEnemy;
             }
         });
+        
+        
     }
     
     private void AssignBattleRooms()
@@ -149,6 +153,9 @@ public class RoomGenerator : MonoBehaviour
             }
             _suitableRoomsForBattle.Remove(randomRoom);
         }
+        
+        bossSpawnRoom.isBattleRoom = true;
+        bossSpawnRoom.enemyData = bossEnemy;
     }
 
     private void GenerateDoors()

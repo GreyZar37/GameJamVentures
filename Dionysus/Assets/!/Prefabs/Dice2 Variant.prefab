@@ -82,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9118136023273937134, guid: a18cc62c192749c41bed443e02118d41, type: 3}
       propertyPath: m_Interpolate
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9118136023273937134, guid: a18cc62c192749c41bed443e02118d41, type: 3}
       propertyPath: m_CollisionDetection

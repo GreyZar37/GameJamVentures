@@ -10,7 +10,14 @@ public class PlayerControllerManager : Singleton<PlayerControllerManager>
 
     public PlayerControllerType currentPlayerControllerType;
 
+  
+    [field: SerializeField]  public PlayerStatus currentPlayerStatus {  get; private set; } = PlayerStatus.Exploring;
 
+    public void SetPlayerStatus(PlayerStatus newPlayerStatus)
+    {
+        currentPlayerStatus = newPlayerStatus;
+    }
+    
     private void Awake()
     {
         players = FindObjectsByType<PlayerIdentifier>(FindObjectsInactive.Include);

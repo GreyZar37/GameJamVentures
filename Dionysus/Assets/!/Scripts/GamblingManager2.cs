@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class GamblingManager2 : Singleton<GamblingManager2>
@@ -17,10 +17,16 @@ public class GamblingManager2 : Singleton<GamblingManager2>
 
     [Header("Other Properties")]
     [SerializeField] private SubtractionSelectionManager subtractionManager;
+    [SerializeField] private PlayDice playDice;
     [SerializeField] private Animator bellAnimator;
     [SerializeField] private Animator scoreTextAnimator;
+    [SerializeField] private TMP_Text playerScoreText;
+    [SerializeField] private TMP_Text opponentScoreText;
+    [SerializeField] private Image arrowImage;
     [SerializeField] private GameObject dicePoolPrefab;
     [SerializeField] private Transform[] dicePositions;
+    [SerializeField] private GameObject[] playerGoblets;
+    [SerializeField] private GameObject[] opponentsGoblets;
 
     private TMP_Text scoreText;
     private DicePool currentPool;
@@ -46,14 +52,53 @@ public class GamblingManager2 : Singleton<GamblingManager2>
 
         GameState = (GameState)Random.Range(0, 2); //Randomize who starts
         ChangeGamblerTurn(GameState);
+
+        UpdateScoreText();
+        UpdateGobletsHealth();
+
         OnGamblingStart?.Invoke();
     }
 
     private void ChangeGamblerTurn(GameState turn)
     {
         GameState = turn;
-        if (GameState == GameState.PLAYER_TURN) StartCoroutine(RunGamblerTurn(Player));
-        else if (GameState == GameState.OPPONENT_TURN) StartCoroutine(RunGamblerTurn(Opponent));
+        if (GameState == GameState.PLAYER_TURN && !Player.isFinished)
+        {
+            StartCoroutine(RunGamblerTurn(Player));
+        }
+        else if (GameState == GameState.OPPONENT_TURN && !Opponent.isFinished)
+        {
+            StartCoroutine(RunGamblerTurn(Opponent));
+        }
+        else if (GameState == GameState.OPPONENT_TURN && Opponent.isFinished && !Player.isFinished)
+        {
+            ChangeGamblerTurn(GameState.PLAYER_TURN);
+            return;
+        }
+        else if (GameState == GameState.PLAYER_TURN && Player.isFinished && !Opponent.isFinished)
+        {
+            ChangeGamblerTurn(GameState.OPPONENT_TURN);
+            return;
+        }
+        else
+        {
+            CheckIfGamblersAreFinished();
+        }
+
+        Quaternion targetRot = turn == GameState.PLAYER_TURN ? Quaternion.Euler(0f, 0f, 180f) : Quaternion.identity;
+        StartCoroutine(SmoothlyRotateArrow(targetRot));
+
+        IEnumerator SmoothlyRotateArrow(Quaternion targetRot)
+        {
+            float progress = 0f;
+            while(progress < 1f)
+            {
+                arrowImage.rectTransform.rotation = Quaternion.Lerp(arrowImage.rectTransform.rotation, targetRot, progress);
+                progress += Time.deltaTime / 4f;
+                yield return null;
+            }
+            arrowImage.rectTransform.rotation = targetRot;
+        }
     }
 
     private IEnumerator RunGamblerTurn(Gambler gambler)
@@ -93,8 +138,19 @@ public class GamblingManager2 : Singleton<GamblingManager2>
                 yield break; //Opponent stopped, don't roll.
             }
         }
+        else if(gambler.turnsPlayed == 0 && gambler.gamblerType == GamblerType.Player)
+        {
+            Debug.Log("Players first turn, show dice");
+            playDice.ShowDice(() =>
+            {
+                RollDices();
+            });
+            yield break;
+        }
+
 
         //Calls local function RollDices():
+        Debug.Log("Enemy's First Turn, Just roll dice");
         RollDices();
 
         void RollDices()
@@ -106,8 +162,11 @@ public class GamblingManager2 : Singleton<GamblingManager2>
             void OnDiceRollDone(int sum)
             {
                 gambler.points += gambler.isSubtracting ? -sum : sum;
+                if (gambler.points < 0) gambler.points = 0;
+
                 scoreText.text = $"{sum} !";
                 scoreTextAnimator.SetTrigger("Show Score");
+                UpdateScoreText();
 
                 if (gambler.points == targetScore)
                 {
@@ -159,8 +218,11 @@ public class GamblingManager2 : Singleton<GamblingManager2>
             OnRoundFinished?.Invoke(GamblerType.Player);
         }
 
+        UpdateGobletsHealth();
+
         Player.ResetRound();
         Opponent.ResetRound();
+        UpdateScoreText();
         ChangeGamblerTurn(GameState == GameState.PLAYER_TURN ? GameState.OPPONENT_TURN : GameState.PLAYER_TURN);
     }
 
@@ -174,11 +236,11 @@ public class GamblingManager2 : Singleton<GamblingManager2>
         }
         else if(GameState == GameState.LOSE)
         {
-            //Play Death Animation Falling to The Ground And Reset Game
-            // SceneManager.LoadScene(0);
+            PlayerControllerManager.Instance.ChangePlayerController(PlayerControllerType.Dying);
             Debug.Log("Sorry to break it to you, but you lost");
         }
         OnGamblingEnd?.Invoke();
+        OnGamblingEnd -= OnGamblingEnd;
     }
 
     private SubtractionSelection CalculateOpponentChoice()
@@ -186,6 +248,30 @@ public class GamblingManager2 : Singleton<GamblingManager2>
         if (Mathf.Abs(Opponent.points - targetScore) <= 3) return SubtractionSelection.Stop;
         else if (Opponent.points > targetScore) return SubtractionSelection.Subtract;
         else return SubtractionSelection.Add;
+    }
+
+    private void UpdateScoreText()
+    {
+        playerScoreText.text = $"{Player.points}/{targetScore}";
+        opponentScoreText.text = $"{Opponent.points}/{targetScore}";
+    }
+
+    private void UpdateGobletsHealth()
+    {
+        HideGoblets();
+        for (int i = 0; i < Player.health; i++)
+        {
+            playerGoblets[i].SetActive(true);
+        }
+        for (int i = 0; i < Opponent.health; i++)
+        {
+            opponentsGoblets[i].SetActive(true);
+        }
+    }
+    private void HideGoblets()
+    {
+        foreach (GameObject goblet in playerGoblets) goblet.SetActive(false);
+        foreach (GameObject goblet in opponentsGoblets) goblet.SetActive(false);
     }
 }
 

@@ -280,6 +280,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   <StartController>k__BackingField: 0
   tableMovement: {fileID: 0}
+  currentPlayerControllerType: 0
+  <currentPlayerStatus>k__BackingField: 2
 --- !u!114 &935779965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,18 +523,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 346524030211191755, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 5654211952356080829, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 7667884447238472723, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 9203597032884249521, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 6028949928454076516, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
