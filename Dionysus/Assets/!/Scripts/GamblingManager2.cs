@@ -20,6 +20,7 @@ public class GamblingManager2 : Singleton<GamblingManager2>
     [SerializeField] private PlayDice playDice;
     [SerializeField] private Animator bellAnimator;
     [SerializeField] private Animator scoreTextAnimator;
+    [SerializeField] private Animator gamblingViewPlayerAnimator;
     [SerializeField] private TMP_Text playerScoreText;
     [SerializeField] private TMP_Text opponentScoreText;
     [SerializeField] private Image arrowImage;
@@ -38,6 +39,7 @@ public class GamblingManager2 : Singleton<GamblingManager2>
     private void Awake()
     {
         scoreText = scoreTextAnimator.GetComponent<TMP_Text>();
+        HideGoblets();
     }
 
     public void SetupForGambling()
@@ -202,6 +204,7 @@ public class GamblingManager2 : Singleton<GamblingManager2>
         {
             Player.health--;
             PlayerManager.Instance.SetPlayerHealth(Player.health);
+            gamblingViewPlayerAnimator.SetTrigger("Drink");
             if (Player.health <= 0)
             {
                 EndGambling(GameState.LOSE); yield break;
@@ -233,12 +236,14 @@ public class GamblingManager2 : Singleton<GamblingManager2>
         {
             Debug.Log("Congratulations!! You won!!");
             PlayerControllerManager.Instance.ChangePlayerController(PlayerControllerType.Sitting);
+            TableMovement.Instance.currentRoom.enemyBeaten = true;
         }
         else if(GameState == GameState.LOSE)
         {
             PlayerControllerManager.Instance.ChangePlayerController(PlayerControllerType.Dying);
             Debug.Log("Sorry to break it to you, but you lost");
         }
+        HideGoblets();
         OnGamblingEnd?.Invoke();
         OnGamblingEnd -= OnGamblingEnd;
     }
