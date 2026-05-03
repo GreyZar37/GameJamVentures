@@ -463,6 +463,7 @@ MonoBehaviour:
   bottomHand: {fileID: 3086784260397456215}
   handsAnimator: {fileID: 499783812879226758}
   smoothTime: 0.6
+  Dionysos: {fileID: 7874971027966531787}
 --- !u!114 &5108178044854356400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1085,6 +1086,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dionysis
       objectReference: {fileID: 0}
+    - target: {fileID: 7978594302841356742, guid: f80acbf1da755cf4c9a78c815a206e8d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1093,6 +1098,11 @@ PrefabInstance:
 --- !u!4 &7350530732558664305 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7346067611800623996, guid: f80acbf1da755cf4c9a78c815a206e8d, type: 3}
+  m_PrefabInstance: {fileID: 283776614412622093}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7874971027966531787 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7978594302841356742, guid: f80acbf1da755cf4c9a78c815a206e8d, type: 3}
   m_PrefabInstance: {fileID: 283776614412622093}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &509443834049909484

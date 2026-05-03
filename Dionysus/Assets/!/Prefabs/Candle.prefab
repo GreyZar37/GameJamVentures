@@ -236,6 +236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LightFlicker
   smoothTime: 0.125
   flickerIntensity: 2
+  flames: {fileID: 8885672547980870242}
+  light: {fileID: 7324678023532236549}
 --- !u!1001 &8503233385580994416
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -394,5 +396,10 @@ PrefabInstance:
 --- !u!4 &5976755882498143894 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2661696070669248998, guid: 4947a970a08c1d04295efa6b3b964d7b, type: 3}
+  m_PrefabInstance: {fileID: 8503233385580994416}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8885672547980870242 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 959774338135563538, guid: 4947a970a08c1d04295efa6b3b964d7b, type: 3}
   m_PrefabInstance: {fileID: 8503233385580994416}
   m_PrefabAsset: {fileID: 0}

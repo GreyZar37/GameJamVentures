@@ -14,8 +14,10 @@ public class RoomGenerator : MonoBehaviour
     private int _roomAmount;
 
     public Room playerSpawnRoom, bossSpawnRoom;
+  
     private List<Room> _uncheckedRooms = new List<Room>();
-
+    private List<Room> _battleRooms = new List<Room>();
+    private List<Room> _suitableRoomsForBattle = new List<Room>();
 
     public Action OnPlayerSpawn;
     
@@ -26,6 +28,15 @@ public class RoomGenerator : MonoBehaviour
     [SerializeField] private int height;
     
     [SerializeField] private int maxRooms;
+    
+    [SerializeField] private int maxBattleRooms;
+    
+    [Range(0,1)]
+    [SerializeField] private float chanceForEasyRoom;
+    [Range(0,1)]
+    [SerializeField] private float chanceForMediumRoom;
+    [Range(0,1)]
+    [SerializeField] private float chanceForHardRoom;
 
     [Header("Prefabs")]
     [SerializeField] private PhysicalRoom[] roomPrefabs;
@@ -36,6 +47,13 @@ public class RoomGenerator : MonoBehaviour
     [SerializeField] private GameObject criticalPath;
 
     [SerializeField] private GameObject playerTable;
+    
+    [Header("Room Difficulty Settings")]
+    [SerializeField] EnemyData easyEnemy;
+    [SerializeField] EnemyData mediumEnemy;
+    [SerializeField] EnemyData hardEnemy;
+    [SerializeField] EnemyData bossEnemy;
+    
     void Start()
     {
         _roomAmount = width * height;
@@ -50,10 +68,23 @@ public class RoomGenerator : MonoBehaviour
         CreateGuaranteedPath(playerSpawnRoom, bossSpawnRoom);
         RemoveRandomRooms();
         GenerateDoors();
+        AssignBattleRooms();
+        AssignRoomDifficulties();
+        
+        bossSpawnRoom.enemyData = bossEnemy;
+        bossSpawnRoom.isBattleRoom = true;
+        
         var spawnPos = new  Vector3(playerSpawnRoom.worldPosition.x, 1.25f, playerSpawnRoom.worldPosition.z);
         Instantiate(playerTable, spawnPos, Quaternion.identity);
         OnPlayerSpawn?.Invoke();
-        
+
+        foreach (var room in _grid)
+        {
+            if (room.roomPrefab != null)
+            {
+                print(room);
+            }
+        }
     }
     
 
@@ -73,7 +104,8 @@ public class RoomGenerator : MonoBehaviour
               room.physicalRoom = spawnedRoom.GetComponent<PhysicalRoom>();
               room.gridPosition = new Vector2Int(i, j);
               _uncheckedRooms.Add(room);
-
+              _suitableRoomsForBattle.Add(room);
+              
               _grid[i,j] = room;
           }
       }
@@ -81,6 +113,42 @@ public class RoomGenerator : MonoBehaviour
       bossSpawnRoom =  _grid[Random.Range(0, _grid.GetLength(0) - 1), height - 1];
       
  
+    }
+
+    private void AssignRoomDifficulties()
+    {
+        _battleRooms.ForEach(room =>
+        {
+            float randomValue = Random.value;
+
+            if (randomValue < chanceForEasyRoom)
+            {
+                room.enemyData = easyEnemy;
+            }
+            else if (randomValue < chanceForEasyRoom + chanceForMediumRoom)
+            {
+                room.enemyData = mediumEnemy;
+            }
+            else
+            {
+                room.enemyData = hardEnemy;
+            }
+        });
+    }
+    
+    private void AssignBattleRooms()
+    {
+        while (_battleRooms.Count < maxBattleRooms && _suitableRoomsForBattle.Count > 0)
+        {
+            var randomRoom = _suitableRoomsForBattle[Random.Range(0, _suitableRoomsForBattle.Count)];
+
+            if (randomRoom.roomPrefab != null)
+            {
+                randomRoom.isBattleRoom = true;
+                _battleRooms.Add(randomRoom);
+            }
+            _suitableRoomsForBattle.Remove(randomRoom);
+        }
     }
 
     private void GenerateDoors()
@@ -307,6 +375,23 @@ public class RoomGenerator : MonoBehaviour
 
         neighbors.Add(neighbor);
     }
+    
+    private void OnValidate()
+    {
+        float total = chanceForEasyRoom + chanceForMediumRoom + chanceForHardRoom;
+
+        if (total <= 0f)
+        {
+            chanceForEasyRoom = 1f;
+            chanceForMediumRoom = 0f;
+            chanceForHardRoom = 0f;
+            return;
+        }
+
+        chanceForEasyRoom /= total;
+        chanceForMediumRoom /= total;
+        chanceForHardRoom /= total;
+    }
 
     public class Room
     {
@@ -318,5 +403,24 @@ public class RoomGenerator : MonoBehaviour
         public Room[] neighbors;
 
         public bool markedProtected;
+        public bool isBattleRoom;
+        
+        public bool visited;
+        
+        public EnemyData enemyData;
+        
+        public override string ToString()
+        {
+            return $"Room " +
+                   $"\nGrid Position: {gridPosition}" +
+                   $"\nWorld Position: {worldPosition}" +
+                   $"\nPrefab: {(roomPrefab != null ? roomPrefab.name : "null")}" +
+                   $"\nPhysical Room: {(physicalRoom != null ? physicalRoom.name : "null")}" +
+                   $"\nProtected: {markedProtected}" +
+                   $"\nBattle Room: {isBattleRoom}" +
+                   $"\nVisited: {visited}" +
+                   $"\nEnemy Data: {(enemyData != null ? enemyData.name : "null")}" +
+                   $"\nNeighbors: {(neighbors != null ? neighbors.Length : 0)}";
+        }
     }
 }
