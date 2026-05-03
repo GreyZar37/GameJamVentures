@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BossDionyis
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   health: 3
-  mustStopAtDiceValue: 10
+  mustStopAtDiceValue: 2
   luck: 0.8
