@@ -2980,7 +2980,6 @@ GameObject:
   - component: {fileID: 3432244043146526264}
   - component: {fileID: 4936360818704440583}
   - component: {fileID: 1960959661638960140}
-  - component: {fileID: 9061938713891599205}
   m_Layer: 7
   m_Name: Opponent Chair
   m_TagString: Untagged
@@ -3081,18 +3080,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.32014155, y: 0.8721234, z: 0.3811265}
   m_Center: {x: -0.15653586, y: 0.4360617, z: -0.18917333}
---- !u!114 &9061938713891599205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8269115943942592167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63ddfe993afddda409f527532e48b3b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!1 &8295236176515215335
 GameObject:
   m_ObjectHideFlags: 0

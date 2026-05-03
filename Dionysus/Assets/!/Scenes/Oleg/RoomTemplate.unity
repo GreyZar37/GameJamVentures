@@ -165,10 +165,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomGenerator
   gridSize: 30
-  width: 2
-  height: 2
+  width: 5
+  height: 5
   maxRooms: 12
-  maxBattleRooms: 0
+  maxBattleRooms: 4
   chanceForEasyRoom: 0.36247492
   chanceForMediumRoom: 0.45255885
   chanceForHardRoom: 0.18496627
