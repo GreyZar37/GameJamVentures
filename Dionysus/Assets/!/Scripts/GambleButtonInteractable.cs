@@ -16,6 +16,7 @@ public class GambleButtonInteractable : MonoBehaviour, IInteractable
     
     public void Interact()
     {
+        if(PlayerControllerManager.Instance.currentPlayerStatus == PlayerStatus.Transitioning) return;
         if (PlayerControllerManager.Instance.currentPlayerControllerType == PlayerControllerType.GamblingView 
             && Singleton<PlayerControllerManager>.Instance.currentPlayerStatus == PlayerStatus.Battling)
         {
@@ -27,7 +28,7 @@ public class GambleButtonInteractable : MonoBehaviour, IInteractable
             PlayerControllerManager.Instance.ChangePlayerController(PlayerControllerType.GamblingView);
         }
         
-        if (TableMovement.Instance.currentRoom.isBattleRoom)
+        if (TableMovement.Instance.currentRoom.isBattleRoom && !TableMovement.Instance.currentRoom.enemyBeaten)
         {
             StartGambling();
         }

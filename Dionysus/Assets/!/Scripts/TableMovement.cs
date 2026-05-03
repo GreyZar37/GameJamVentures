@@ -202,8 +202,6 @@ public class TableMovement : Singleton<TableMovement>
         {
             lightOjb.TurnOff();
         }
-        yield return new WaitForSeconds(0.5f);
-       
         
         if (!currentRoom.isBattleRoom || currentRoom.visited)
         {
@@ -217,7 +215,7 @@ public class TableMovement : Singleton<TableMovement>
 
         }
         
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         foreach (var lightObj in currentLights)
         {

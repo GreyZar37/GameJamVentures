@@ -413,6 +413,7 @@ public class RoomGenerator : MonoBehaviour
         public bool isBattleRoom;
         
         public bool visited;
+        public bool enemyBeaten;
         
         public EnemyData enemyData;
         

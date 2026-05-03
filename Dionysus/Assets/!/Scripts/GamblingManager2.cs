@@ -236,6 +236,7 @@ public class GamblingManager2 : Singleton<GamblingManager2>
         {
             Debug.Log("Congratulations!! You won!!");
             PlayerControllerManager.Instance.ChangePlayerController(PlayerControllerType.Sitting);
+            TableMovement.Instance.currentRoom.enemyBeaten = true;
         }
         else if(GameState == GameState.LOSE)
         {
