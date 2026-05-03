@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: HardDionyis
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   health: 2
-  mustStopAtDiceValue: 8
+  mustStopAtDiceValue: 3
   luck: 0.6
