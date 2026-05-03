@@ -75,6 +75,11 @@ public class GamblingManager2 : Singleton<GamblingManager2>
             ChangeGamblerTurn(GameState.PLAYER_TURN);
             return;
         }
+        else if (GameState == GameState.PLAYER_TURN && Player.isFinished && !Opponent.isFinished)
+        {
+            ChangeGamblerTurn(GameState.OPPONENT_TURN);
+            return;
+        }
         else
         {
             CheckIfGamblersAreFinished();
