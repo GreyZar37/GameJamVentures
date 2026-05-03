@@ -8,6 +8,8 @@ public class PlayerControllerManager : Singleton<PlayerControllerManager>
     
     [SerializeField] private TableMovement tableMovement;
 
+    public PlayerControllerType currentPlayerControllerType;
+
 
     private void Awake()
     {
@@ -30,6 +32,8 @@ public class PlayerControllerManager : Singleton<PlayerControllerManager>
         {
             newPlayer.gameObject.SetActive(true);
         });
+        
+        currentPlayerControllerType  = type;
     }
     public void ChangePlayerControllerInstantly(PlayerControllerType type)
     {
