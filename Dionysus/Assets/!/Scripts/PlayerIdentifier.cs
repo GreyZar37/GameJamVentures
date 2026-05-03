@@ -9,7 +9,7 @@ public class PlayerIdentifier : MonoBehaviour
 
 public enum PlayerControllerType
 {
-    FreeRoam, Sitting, GamblingView
+    FreeRoam, Sitting, GamblingView, Dying
 }
 
 public enum PlayerStatus
