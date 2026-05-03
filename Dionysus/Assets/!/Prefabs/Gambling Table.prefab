@@ -1546,7 +1546,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3760317735939915167}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d993384713e46949b3db59ddc4ff8e6, type: 3}
   m_Name: 
@@ -1558,6 +1558,7 @@ MonoBehaviour:
   handsAnimator: {fileID: 499783812879226758}
   smoothTime: 0.6
   Dionysos: {fileID: 7874971027966531787}
+  roomSelectionOnHalt: 0
 --- !u!114 &5108178044854356400
 MonoBehaviour:
   m_ObjectHideFlags: 0

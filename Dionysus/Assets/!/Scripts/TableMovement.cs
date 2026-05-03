@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class TableMovement : MonoBehaviour
+public class TableMovement : Singleton<TableMovement>
 {
     [SerializeField] private HandLogic leftHand;
     [SerializeField] private HandLogic rightHand;
@@ -23,13 +23,16 @@ public class TableMovement : MonoBehaviour
      [SerializeField] private GameObject Dionysos;
      
      private bool doorsOpen = false;
+     public bool roomSelectionOnHalt = false;
 
+     private GambleButtonInteractable _buttonInteractable;
    
      void Start()
     {
         _generator = FindAnyObjectByType<RoomGenerator>();
         currentRoom = _generator.playerSpawnRoom;
         print("current room: " + currentRoom);
+        _buttonInteractable = FindAnyObjectByType<GambleButtonInteractable>(FindObjectsInactive.Include);
     }
     
     public void MoveGamblingTable(Vector3 targetPos)
@@ -76,6 +79,7 @@ public class TableMovement : MonoBehaviour
 
     public void SelectNewRoom()
     {
+        if (roomSelectionOnHalt) return;
         currentLights.Clear();
         currentLights.AddRange(FindObjectsByType<LightLogic>());
 
@@ -83,7 +87,7 @@ public class TableMovement : MonoBehaviour
 
         EnableHands(currentRoom.physicalRoom.doors);
         ShowHands();
-        
+        roomSelectionOnHalt = true;
     }
 
     private void EnableHands(PhysicalRoom.DoorDirection doors)
@@ -126,11 +130,8 @@ public class TableMovement : MonoBehaviour
 
     private void MoveToAnotherRoom(PhysicalRoom.DoorDirection direction)
     {
-        print("light count: " + currentLights.Count);
-        foreach (var lightOjb in currentLights)
-        {
-            lightOjb.TurnOff();
-        }
+        PlayerControllerManager.Instance.SetPlayerStatus(PlayerStatus.Transitioning);
+
         leftHand.ClearActions();
         rightHand.ClearActions();
         topHand.ClearActions();
@@ -186,21 +187,22 @@ public class TableMovement : MonoBehaviour
         }
 
         transform.position = flatTarget;
-        ReachedNewRoom();
+        StartCoroutine(ReachedNewRoom()) ;
 
 
     }
     
-    private void ReachedNewRoom()
-    {
-        foreach (var lightObj in currentLights)
-        {
-            if (lightObj != null)
-            {
-                lightObj.TurnOn();
-            }
-        }
+    private IEnumerator ReachedNewRoom()
+    { 
+        roomSelectionOnHalt = false;
 
+        foreach (var lightOjb in currentLights)
+        {
+            lightOjb.TurnOff();
+        }
+        yield return new WaitForSeconds(0.5f);
+       
+        
         if (!currentRoom.isBattleRoom || currentRoom.visited)
         {
             SelectNewRoom();
@@ -209,10 +211,28 @@ public class TableMovement : MonoBehaviour
         {
             CloseAllDoors();
             Dionysos.SetActive(true);
+            _buttonInteractable.StartGambling();
+
         }
+        
+        yield return new WaitForSeconds(0.5f);
+
+        foreach (var lightObj in currentLights)
+        {
+            if (lightObj != null)
+            {
+                lightObj.TurnOn();
+            }
+        }
+
         
         if(!currentRoom.visited)
           currentRoom.visited = true;
+        
+        if(PlayerControllerManager.Instance.currentPlayerStatus != PlayerStatus.Battling)
+             PlayerControllerManager.Instance.SetPlayerStatus(PlayerStatus.Exploring);
+
+        
 
     }
 }

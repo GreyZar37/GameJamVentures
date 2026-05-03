@@ -26,16 +26,15 @@ public class GambleButtonInteractable : MonoBehaviour, IInteractable
         {
             PlayerControllerManager.Instance.ChangePlayerController(PlayerControllerType.GamblingView);
         }
-        GamblingManager2.Instance.StartGambling();
-        /*if (Singleton<TableMovement>.Instance.currentRoom.isBattleRoom)
+        
+        if (TableMovement.Instance.currentRoom.isBattleRoom)
         {
-            diceAnimator.SetBool("isHidden", false);
+            StartGambling();
         }
         else
         {
-             diceAnimator.SetBool("isHidden", true);
-             Singleton<TableMovement>.Instance.SelectNewRoom();
-        }*/
+             TableMovement.Instance.SelectNewRoom();
+        }
        
 
     }
@@ -48,6 +47,13 @@ public class GambleButtonInteractable : MonoBehaviour, IInteractable
     public void Unhighlight()
     {
         
+    }
+
+    public void StartGambling()
+    {
+        GamblingManager2.Instance.StartGambling();
+        PlayerControllerManager.Instance.SetPlayerStatus(PlayerStatus.Battling);
+
     }
     
 
