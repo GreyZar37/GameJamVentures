@@ -235,8 +235,9 @@ public class GamblingManager2 : Singleton<GamblingManager2>
         if(GameState == GameState.WIN)
         {
             Debug.Log("Congratulations!! You won!!");
-            PlayerControllerManager.Instance.ChangePlayerController(PlayerControllerType.Sitting);
             TableMovement.Instance.currentRoom.enemyBeaten = true;
+            OnGamblingEnd?.Invoke();
+            OnGamblingEnd -= OnGamblingEnd;
         }
         else if(GameState == GameState.LOSE)
         {
@@ -244,8 +245,7 @@ public class GamblingManager2 : Singleton<GamblingManager2>
             Debug.Log("Sorry to break it to you, but you lost");
         }
         HideGoblets();
-        OnGamblingEnd?.Invoke();
-        OnGamblingEnd -= OnGamblingEnd;
+      
     }
 
     private SubtractionSelection CalculateOpponentChoice()

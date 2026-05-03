@@ -27,6 +27,7 @@ public class Activator : MonoBehaviour
             {
                 obj.SetActive(false);
             }
+            isActivated = false;
         }
        
     }
