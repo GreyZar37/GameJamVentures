@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class GamblingManager2 : Singleton<GamblingManager2>
@@ -19,6 +20,9 @@ public class GamblingManager2 : Singleton<GamblingManager2>
     [SerializeField] private SubtractionSelectionManager subtractionManager;
     [SerializeField] private Animator bellAnimator;
     [SerializeField] private Animator scoreTextAnimator;
+    [SerializeField] private TMP_Text playerScoreText;
+    [SerializeField] private TMP_Text opponentScoreText;
+    [SerializeField] private Image arrowImage;
     [SerializeField] private GameObject dicePoolPrefab;
     [SerializeField] private Transform[] dicePositions;
 
@@ -46,14 +50,32 @@ public class GamblingManager2 : Singleton<GamblingManager2>
 
         GameState = (GameState)Random.Range(0, 2); //Randomize who starts
         ChangeGamblerTurn(GameState);
+
+        UpdateScoreText();
         OnGamblingStart?.Invoke();
     }
 
     private void ChangeGamblerTurn(GameState turn)
     {
         GameState = turn;
-        if (GameState == GameState.PLAYER_TURN) StartCoroutine(RunGamblerTurn(Player));
-        else if (GameState == GameState.OPPONENT_TURN) StartCoroutine(RunGamblerTurn(Opponent));
+        if (GameState == GameState.PLAYER_TURN && !Player.isFinished) StartCoroutine(RunGamblerTurn(Player));
+        else if (GameState == GameState.OPPONENT_TURN && !Opponent.isFinished) StartCoroutine(RunGamblerTurn(Opponent));
+        else CheckIfGamblersAreFinished();
+
+        Quaternion targetRot = turn == GameState.PLAYER_TURN ? Quaternion.Euler(0f, 0f, 180f) : Quaternion.identity;
+        StartCoroutine(SmoothlyRotateArrow(targetRot));
+
+        IEnumerator SmoothlyRotateArrow(Quaternion targetRot)
+        {
+            float progress = 0f;
+            while(progress < 1f)
+            {
+                arrowImage.rectTransform.rotation = Quaternion.Lerp(arrowImage.rectTransform.rotation, targetRot, progress);
+                progress += Time.deltaTime / 4f;
+                yield return null;
+            }
+            arrowImage.rectTransform.rotation = targetRot;
+        }
     }
 
     private IEnumerator RunGamblerTurn(Gambler gambler)
@@ -106,8 +128,11 @@ public class GamblingManager2 : Singleton<GamblingManager2>
             void OnDiceRollDone(int sum)
             {
                 gambler.points += gambler.isSubtracting ? -sum : sum;
+                if (gambler.points < 0) gambler.points = 0;
+
                 scoreText.text = $"{sum} !";
                 scoreTextAnimator.SetTrigger("Show Score");
+                UpdateScoreText();
 
                 if (gambler.points == targetScore)
                 {
@@ -161,6 +186,7 @@ public class GamblingManager2 : Singleton<GamblingManager2>
 
         Player.ResetRound();
         Opponent.ResetRound();
+        UpdateScoreText();
         ChangeGamblerTurn(GameState == GameState.PLAYER_TURN ? GameState.OPPONENT_TURN : GameState.PLAYER_TURN);
     }
 
@@ -186,6 +212,12 @@ public class GamblingManager2 : Singleton<GamblingManager2>
         if (Mathf.Abs(Opponent.points - targetScore) <= 3) return SubtractionSelection.Stop;
         else if (Opponent.points > targetScore) return SubtractionSelection.Subtract;
         else return SubtractionSelection.Add;
+    }
+
+    private void UpdateScoreText()
+    {
+        playerScoreText.text = $"{Player.points}/{targetScore}";
+        opponentScoreText.text = $"{Opponent.points}/{targetScore}";
     }
 }
 
