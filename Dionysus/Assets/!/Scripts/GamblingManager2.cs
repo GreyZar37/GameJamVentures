@@ -203,7 +203,7 @@ public class GamblingManager2 : Singleton<GamblingManager2>
         int playerDiff = Mathf.Abs(Player.points - targetScore);
         int opponentDiff = Mathf.Abs(Opponent.points - targetScore);
 
-        if (playerDiff >= opponentDiff) // Player Loses
+        if (playerDiff > opponentDiff) // Player Loses
         {
             Player.health--;
             PlayerManager.Instance.SetPlayerHealth(Player.health);
