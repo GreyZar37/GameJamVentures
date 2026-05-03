@@ -242,6 +242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 935779963}
   - component: {fileID: 935779964}
+  - component: {fileID: 935779965}
   m_Layer: 0
   m_Name: Player Controller Manager
   m_TagString: Untagged
@@ -279,6 +280,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   <StartController>k__BackingField: 0
   tableMovement: {fileID: 0}
+--- !u!114 &935779965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935779962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccd93a0b2cb37b94194a560f4f43d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
+  <PlayerHealth>k__BackingField: 3
 --- !u!1 &1015296570
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,7 +519,22 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 346524030211191755, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 5654211952356080829, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 7667884447238472723, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 9203597032884249521, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 6028949928454076516, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
 --- !u!1 &1856067950
 GameObject:
