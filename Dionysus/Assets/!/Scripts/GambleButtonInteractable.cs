@@ -20,6 +20,7 @@ public class GambleButtonInteractable : MonoBehaviour, IInteractable
             && Singleton<PlayerControllerManager>.Instance.currentPlayerStatus == PlayerStatus.Battling)
         {
             manager.SelectChoice(selection);
+            return;
         }
         else
         {
@@ -29,11 +30,11 @@ public class GambleButtonInteractable : MonoBehaviour, IInteractable
         if (Singleton<TableMovement>.Instance.currentRoom.isBattleRoom)
         {
             diceAnimator.SetBool("isHidden", false);
-            Singleton<TableMovement>.Instance.SelectNewRoom();
         }
         else
         {
              diceAnimator.SetBool("isHidden", true);
+             Singleton<TableMovement>.Instance.SelectNewRoom();
         }
        
 

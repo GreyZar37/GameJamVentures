@@ -221,7 +221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4686449470363559859
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1385,6 +1385,7 @@ MonoBehaviour:
   <StartController>k__BackingField: 0
   tableMovement: {fileID: 5142691632796209696}
   currentPlayerControllerType: 0
+  <currentPlayerStatus>k__BackingField: 2
 --- !u!1 &3665748346996882328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1531,7 +1532,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3760317735939915167}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d993384713e46949b3db59ddc4ff8e6, type: 3}
   m_Name: 
@@ -3842,6 +3843,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8872086264739538647, guid: 3aaafca2139edc5459326eb88c01527a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 878313026484763816}
+    - targetCorrespondingSourceObject: {fileID: 854577291861749492, guid: 3aaafca2139edc5459326eb88c01527a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 333533940996656560}
   m_SourcePrefab: {fileID: 100100000, guid: 3aaafca2139edc5459326eb88c01527a, type: 3}
 --- !u!1 &2311719600804365798 stripped
 GameObject:
@@ -3861,6 +3865,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   chair: {fileID: 6454407770659221377}
+--- !u!1 &5825135972658204101 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 854577291861749492, guid: 3aaafca2139edc5459326eb88c01527a, type: 3}
+  m_PrefabInstance: {fileID: 6560367832434778929}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &333533940996656560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5825135972658204101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8beb2286dd7b46d46876264e7adf1ce6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Activator
+  requiredPlayerStatus: 1
+  objectsToActivate:
+  - {fileID: 367032955857255744}
 --- !u!224 &8097492391246939864 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3128604967856727529, guid: 3aaafca2139edc5459326eb88c01527a, type: 3}

@@ -24,13 +24,12 @@ public class TableMovement : MonoBehaviour
      
      private bool doorsOpen = false;
 
-    
-    void Start()
+   
+     void Start()
     {
         _generator = FindAnyObjectByType<RoomGenerator>();
         currentRoom = _generator.playerSpawnRoom;
-        
-
+        print("current room: " + currentRoom);
     }
     
     public void MoveGamblingTable(Vector3 targetPos)
