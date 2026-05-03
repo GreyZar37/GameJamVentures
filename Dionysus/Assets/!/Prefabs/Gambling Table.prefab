@@ -1805,6 +1805,7 @@ MonoBehaviour:
   playDice: {fileID: 5472104102720088960}
   bellAnimator: {fileID: 2237501662412014473}
   scoreTextAnimator: {fileID: 3406206662538104039}
+  gamblingViewPlayerAnimator: {fileID: 2825323707484478287}
   playerScoreText: {fileID: 707190564691834258}
   opponentScoreText: {fileID: 97515132734610437}
   arrowImage: {fileID: 1891827333030126170}
@@ -4526,6 +4527,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   chair: {fileID: 6454407770659221377}
+--- !u!95 &2825323707484478287 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8952746183239317630, guid: 3aaafca2139edc5459326eb88c01527a, type: 3}
+  m_PrefabInstance: {fileID: 6560367832434778929}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5825135972658204101 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 854577291861749492, guid: 3aaafca2139edc5459326eb88c01527a, type: 3}
