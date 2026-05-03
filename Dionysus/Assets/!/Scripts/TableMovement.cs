@@ -167,6 +167,8 @@ public class TableMovement : Singleton<TableMovement>
     
     private IEnumerator MoveGamblingTableSmoothly(Vector3 targetPos)
     {
+        PlayerControllerManager.Instance.ChangePlayerController(PlayerControllerType.Sitting);
+
         Vector3 refPos = Vector3.zero;
 
         Vector3 flatTarget = new Vector3(targetPos.x, transform.position.y, targetPos.z);
@@ -233,6 +235,7 @@ public class TableMovement : Singleton<TableMovement>
              PlayerControllerManager.Instance.SetPlayerStatus(PlayerStatus.Exploring);
 
         
+        PlayerControllerManager.Instance.ChangePlayerController(PlayerControllerType.GamblingView);
 
     }
 }
