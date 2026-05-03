@@ -201,6 +201,7 @@ public class TableMovement : MonoBehaviour
         else if( currentRoom.isBattleRoom)
         {
             CloseAllDoors();
+            Dionysos.SetActive(true);
         }
         
         if(!currentRoom.visited)
