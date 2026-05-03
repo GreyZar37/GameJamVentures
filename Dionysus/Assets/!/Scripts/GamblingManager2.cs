@@ -236,8 +236,7 @@ public class GamblingManager2 : Singleton<GamblingManager2>
         }
         else if(GameState == GameState.LOSE)
         {
-            //Play Death Animation Falling to The Ground And Reset Game
-            // SceneManager.LoadScene(0);
+            PlayerControllerManager.Instance.ChangePlayerController(PlayerControllerType.Dying);
             Debug.Log("Sorry to break it to you, but you lost");
         }
         OnGamblingEnd?.Invoke();
