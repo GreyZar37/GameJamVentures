@@ -33,6 +33,7 @@ public class PhysicalRoom : MonoBehaviour
     [SerializeField] private GameObject southWall;
     
    [SerializeField]  private Animator[] doorsAnimators;
+   
 
     public void CreateDoors(DoorDirection assignDoors)
     {

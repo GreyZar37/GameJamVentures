@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac1a86e61e403c42a23f1fd6c5872ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Roll
+  DicePool: {fileID: 0}
 --- !u!65 &5503778796509683198
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -140,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac1a86e61e403c42a23f1fd6c5872ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Roll
+  DicePool: {fileID: 0}
 --- !u!65 &3290707048677782194
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -234,6 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac1a86e61e403c42a23f1fd6c5872ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Roll
+  DicePool: {fileID: 0}
 --- !u!65 &1494925121826535461
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -328,6 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac1a86e61e403c42a23f1fd6c5872ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Roll
+  DicePool: {fileID: 0}
 --- !u!65 &3247506155637440321
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -422,6 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac1a86e61e403c42a23f1fd6c5872ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Roll
+  DicePool: {fileID: 0}
 --- !u!65 &1772809047006290462
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -518,6 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac1a86e61e403c42a23f1fd6c5872ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Roll
+  DicePool: {fileID: 0}
 --- !u!65 &975002123012800696
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -656,12 +662,12 @@ Transform:
   m_LocalScale: {x: 0.1059449, y: 0.1059449, z: 0.1059449}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3953598287271136908}
   - {fileID: 8768497904363037076}
   - {fileID: 1168771190558984256}
-  - {fileID: 7226399428328586929}
-  - {fileID: 1533534966475608207}
   - {fileID: 1437753489425002244}
+  - {fileID: 1533534966475608207}
+  - {fileID: 7226399428328586929}
+  - {fileID: 3953598287271136908}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3175937252433132037

@@ -6,7 +6,7 @@ public class GambleButtonInteractable : MonoBehaviour, IInteractable
     public void Interact()
     {
         PlayerControllerManager.Instance.ChangePlayerController(PlayerControllerType.GamblingView);
-        GamblingManager.Instance.StartGambling();
+        GamblingManager2.Instance.StartGambling();
     }
 
     public void Highlight()

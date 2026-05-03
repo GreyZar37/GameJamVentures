@@ -18859,10 +18859,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3996085442246934800}
     m_Modifications:
-    - target: {fileID: 130492851707832216, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 660772695909767012, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.993
@@ -18903,21 +18899,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2701426944860474203, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2988009442697949462, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 4670902241177802077, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
       propertyPath: m_Name
       value: Torch Holder (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4670902241177802077, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19606,10 +19590,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3996085442246934800}
     m_Modifications:
-    - target: {fileID: 130492851707832216, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 660772695909767012, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.002
@@ -19650,21 +19630,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2701426944860474203, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2988009442697949462, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 4670902241177802077, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
       propertyPath: m_Name
       value: Torch Holder (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4670902241177802077, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20605,10 +20573,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3996085442246934800}
     m_Modifications:
-    - target: {fileID: 130492851707832216, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 660772695909767012, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.993
@@ -20649,21 +20613,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2701426944860474203, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2988009442697949462, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 4670902241177802077, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
       propertyPath: m_Name
       value: Torch Holder (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4670902241177802077, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21095,10 +21047,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3996085442246934800}
     m_Modifications:
-    - target: {fileID: 130492851707832216, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 660772695909767012, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.02
@@ -21139,21 +21087,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2701426944860474203, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2988009442697949462, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 4670902241177802077, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
       propertyPath: m_Name
       value: Torch Holder
-      objectReference: {fileID: 0}
-    - target: {fileID: 4670902241177802077, guid: fa936bfb70d69a64886a11cd2b7776a0, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

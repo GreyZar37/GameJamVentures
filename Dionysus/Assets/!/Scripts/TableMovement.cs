@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TableMovement : MonoBehaviour
 {
@@ -15,29 +17,37 @@ public class TableMovement : MonoBehaviour
      private RoomGenerator _generator;
      
      [SerializeField] private float smoothTime = 0.125f;
+     
+     private List<LightLogic> currentLights = new List<LightLogic>();
+     
+     [SerializeField] private GameObject Dionysos;
+
     
     void Start()
     {
         _generator = FindAnyObjectByType<RoomGenerator>();
         currentRoom = _generator.playerSpawnRoom;
+        
+
     }
     
     public void MoveGamblingTable(Vector3 targetPos)
     {
+       
         StopAllCoroutines();
         StartCoroutine(MoveGamblingTableSmoothly(targetPos));
     }
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Keyboard.current.enterKey.wasPressedThisFrame)
         {
             SelectNewRoom();
         }
     }
 
 
-    public void OpenAllDoors()
+    private void OpenAllDoors()
     {
         var neighbors = _generator.GetNeighbors(currentRoom.gridPosition.x, currentRoom.gridPosition.y);
         foreach (var neighbor in neighbors)
@@ -47,7 +57,7 @@ public class TableMovement : MonoBehaviour
         currentRoom.physicalRoom.SetOpenState(true);
     }
 
-    public void CloseAllDoors()
+    private void CloseAllDoors()
     {
         var neighbors = _generator.GetNeighbors(currentRoom.gridPosition.x, currentRoom.gridPosition.y);
         foreach (var neighbor in neighbors)
@@ -59,8 +69,14 @@ public class TableMovement : MonoBehaviour
 
     private void SelectNewRoom()
     {
+        currentLights.Clear();
+        currentLights.AddRange(FindObjectsByType<LightLogic>());
+
+        OpenAllDoors();
+
         EnableHands(currentRoom.physicalRoom.doors);
         ShowHands();
+        
     }
 
     private void EnableHands(PhysicalRoom.DoorDirection doors)
@@ -103,6 +119,11 @@ public class TableMovement : MonoBehaviour
 
     private void MoveToAnotherRoom(PhysicalRoom.DoorDirection direction)
     {
+        print("light count: " + currentLights.Count);
+        foreach (var lightOjb in currentLights)
+        {
+            lightOjb.TurnOff();
+        }
         leftHand.ClearActions();
         rightHand.ClearActions();
         topHand.ClearActions();
@@ -134,19 +155,57 @@ public class TableMovement : MonoBehaviour
 
         print(direction.ToString());
         HideHands();
-
     }
     
     private IEnumerator MoveGamblingTableSmoothly(Vector3 targetPos)
     {
         Vector3 refPos = Vector3.zero;
-        while(Vector3.Distance(transform.position, targetPos) > 0.01f)
+
+        Vector3 flatTarget = new Vector3(targetPos.x, transform.position.y, targetPos.z);
+
+        while (Vector3.Distance(transform.position, flatTarget) > 0.01f)
         {
-            var newPos = Vector3.SmoothDamp(transform.position, targetPos, ref refPos, smoothTime, Mathf.Infinity,
-                Time.deltaTime);
+            Vector3 newPos = Vector3.SmoothDamp(
+                transform.position,
+                flatTarget,
+                ref refPos,
+                smoothTime,
+                Mathf.Infinity,
+                Time.deltaTime
+            );
+
             transform.position = new Vector3(newPos.x, transform.position.y, newPos.z);
             yield return null;
         }
-        transform.position = targetPos;
+
+        transform.position = flatTarget;
+        ReachedNewRoom();
+
+
+    }
+    
+    private void ReachedNewRoom()
+    {
+        foreach (var lightObj in currentLights)
+        {
+            if (lightObj != null)
+            {
+                lightObj.TurnOn();
+            }
+        }
+
+        if (!currentRoom.isBattleRoom || currentRoom.visited)
+        {
+            SelectNewRoom();
+        }
+        else if( currentRoom.isBattleRoom)
+        {
+            CloseAllDoors();
+            Dionysos.SetActive(true);
+        }
+        
+        if(!currentRoom.visited)
+          currentRoom.visited = true;
+
     }
 }

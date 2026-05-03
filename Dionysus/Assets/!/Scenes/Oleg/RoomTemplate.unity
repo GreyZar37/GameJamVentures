@@ -168,12 +168,20 @@ MonoBehaviour:
   width: 3
   height: 3
   maxRooms: 6
+  maxBattleRooms: 3
+  chanceForEasyRoom: 0.36247492
+  chanceForMediumRoom: 0.45255885
+  chanceForHardRoom: 0.18496627
   roomPrefabs:
   - {fileID: 7285225467186895779, guid: 6e397a616b7a0974d80ead75a039e087, type: 3}
   westEastCorridorPrefab: {fileID: 4595155746666300286, guid: 582f64a96b804a54a8d8ce20509da28c, type: 3}
   northSouthCorridorPrefab: {fileID: 3041195342328562980, guid: 3879a9401dbfa6e40ace6550c5828a35, type: 3}
   criticalPath: {fileID: 2492007768359427177, guid: 791f9be659f727943b8ac11f382eb0b9, type: 3}
   playerTable: {fileID: 3760317735939915167, guid: 2694adfd414b8cf418d0d31d43f0e937, type: 3}
+  easyEnemy: {fileID: 11400000, guid: a974ce88ec07c794a88566fd74df599d, type: 2}
+  mediumEnemy: {fileID: 11400000, guid: 128c9145a0c26f94da6091258fd4c7c6, type: 2}
+  hardEnemy: {fileID: 11400000, guid: ed4ae7e6eb3dab446b8265451f17f37e, type: 2}
+  bossEnemy: {fileID: 11400000, guid: 4915aa10ac9872f41ab19fccac5b6242, type: 2}
 --- !u!167 &322681838
 AudioReverbZone:
   m_ObjectHideFlags: 0

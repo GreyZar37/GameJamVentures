@@ -30,17 +30,6 @@ public class PlayerControllerManager : Singleton<PlayerControllerManager>
         {
             newPlayer.gameObject.SetActive(true);
         });
-
-        switch (type)
-        {
-            case PlayerControllerType.Sitting:
-                tableMovement.OpenAllDoors();
-                break;
-            case PlayerControllerType.FreeRoam:
-                tableMovement.CloseAllDoors();
-                break;
-        }
-        
     }
     public void ChangePlayerControllerInstantly(PlayerControllerType type)
     {
