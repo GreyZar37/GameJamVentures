@@ -17,10 +17,13 @@ public class DicePool : MonoBehaviour
         dices = GetComponentsInChildren<Dice>();
         foreach (Dice dice in dices)
         {
-            dice.GetComponent<Rigidbody>().isKinematic = true;
+            Rigidbody rb = dice.GetComponent<Rigidbody>();
+            rb.isKinematic = true;
+            rb.interpolation = RigidbodyInterpolation.None;
             dice.OnDiceResult += UpdateSum;
             dice.transform.rotation = Random.rotation;
-            dice.GetComponent<Rigidbody>().isKinematic = false;
+            rb.isKinematic = false;
+            rb.interpolation = RigidbodyInterpolation.Interpolate;
         }
     }
 
