@@ -1,5 +1,7 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerControllerManager : Singleton<PlayerControllerManager>
 {
@@ -26,6 +28,11 @@ public class PlayerControllerManager : Singleton<PlayerControllerManager>
     private void Start()
     {
         ChangePlayerControllerInstantly(StartController);
+    }
+
+    private void Update()
+    {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame) SceneManager.LoadScene(0);
     }
 
     public void ChangePlayerController(PlayerControllerType type) //Deactivates all players, then activates the specific one
