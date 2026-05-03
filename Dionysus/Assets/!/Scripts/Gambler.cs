@@ -23,6 +23,7 @@ public class Gambler
         points = 0;
         turnsPlayed = 0;
         isFinished = false;
+        isSubtracting = false;
     }
 }
 
