@@ -13,7 +13,7 @@ public class TableMovement : MonoBehaviour
     
     [SerializeField] private Animator handsAnimator;
     
-     private RoomGenerator.Room currentRoom;
+     public RoomGenerator.Room currentRoom;
      private RoomGenerator _generator;
      
      [SerializeField] private float smoothTime = 0.125f;
@@ -42,10 +42,7 @@ public class TableMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.enterKey.wasPressedThisFrame)
-        {
-            SelectNewRoom();
-        }
+        
 
         if (Singleton<PlayerControllerManager>.Instance.currentPlayerControllerType !=
             PlayerControllerType.GamblingView && doorsOpen)
@@ -78,7 +75,7 @@ public class TableMovement : MonoBehaviour
         doorsOpen = false;
     }
 
-    private void SelectNewRoom()
+    public void SelectNewRoom()
     {
         currentLights.Clear();
         currentLights.AddRange(FindObjectsByType<LightLogic>());

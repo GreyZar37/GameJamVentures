@@ -6,7 +6,8 @@ public class GambleButtonInteractable : MonoBehaviour, IInteractable
     private SubtractionSelectionManager manager;
 
     
-    [SerializeField] GameObject DicePool;
+    [SerializeField] Animator diceAnimator;
+    
     
     private void Awake()
     {
@@ -15,14 +16,24 @@ public class GambleButtonInteractable : MonoBehaviour, IInteractable
     
     public void Interact()
     {
-        if (PlayerControllerManager.Instance.currentPlayerControllerType == PlayerControllerType.GamblingView)
+        if (PlayerControllerManager.Instance.currentPlayerControllerType == PlayerControllerType.GamblingView 
+            && Singleton<PlayerControllerManager>.Instance.currentPlayerStatus == PlayerStatus.Battling)
         {
             manager.SelectChoice(selection);
         }
         else
         {
             PlayerControllerManager.Instance.ChangePlayerController(PlayerControllerType.GamblingView);
-            GamblingManager2.Instance.StartGambling();
+        }
+
+        if (Singleton<TableMovement>.Instance.currentRoom.isBattleRoom)
+        {
+            diceAnimator.SetBool("isHidden", false);
+            Singleton<TableMovement>.Instance.SelectNewRoom();
+        }
+        else
+        {
+             diceAnimator.SetBool("isHidden", true);
         }
        
 
