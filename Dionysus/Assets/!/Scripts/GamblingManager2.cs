@@ -32,6 +32,7 @@ public class GamblingManager2 : Singleton<GamblingManager2>
 
     private TMP_Text scoreText;
     private DicePool currentPool;
+    private EnemyData opponentData;
 
     public event Action OnGamblingStart;
     public event Action OnGamblingEnd;
@@ -52,6 +53,7 @@ public class GamblingManager2 : Singleton<GamblingManager2>
     {
         Player = new Gambler(PlayerManager.Instance.PlayerHealth, GamblerType.Player);
         Opponent = new Gambler(enemyData.health, GamblerType.Opponent); //Change argument (health) based on opponent difficulty!
+        opponentData = enemyData;
 
         GameState = (GameState)Random.Range(0, 2); //Randomize who starts
         ChangeGamblerTurn(GameState);
@@ -256,7 +258,7 @@ public class GamblingManager2 : Singleton<GamblingManager2>
 
     private SubtractionSelection CalculateOpponentChoice()
     {
-        if (Mathf.Abs(Opponent.points - targetScore) <= 3) return SubtractionSelection.Stop;
+        if (Mathf.Abs(Opponent.points - targetScore) <= opponentData.mustStopAtDiceValue) return SubtractionSelection.Stop;
         else if (Opponent.points > targetScore) return SubtractionSelection.Subtract;
         else return SubtractionSelection.Add;
     }
